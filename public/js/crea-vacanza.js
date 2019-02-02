@@ -11,6 +11,11 @@ $('.continenti .grid_element_box_child').on('click', function () {
             url: '/continente/' + continente,
             success: function (data) {
                 $('.title-header-box.nazioni').removeClass('d-none');
+
+                var element = document.getElementById("collapseNazioni");
+                while (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                }
                 $('#collapseNazioni').append(data);
                 if (!$('#collapseNazioni').hasClass('show')) {
                     $('#collapseNazioni').addClass('show');
