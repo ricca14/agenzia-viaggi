@@ -1,9 +1,4 @@
 var mysql = require('mysql');
-// TEST
-// const credentials = { host: 'localhost', user: 'root', password: 'reventon7', database: 'agenzia_viaggi' };
-// PROD
-const credentials = { host: 'uf63wl4z2daq9dbb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com', user: 'ko0glfci1sg9gt3b', password: 'pqik5yg6ixhvhiw2', database: 'hjj0cggwndc4657y' };
-
 var log4js = require('log4js');
 var logger = log4js.getLogger();
 var db;
@@ -12,7 +7,12 @@ var exports = module.exports = {};
 // Se non è presente crea una connessione al DB
 function connectDatabase() {
     if (!db) {
-        db = mysql.createConnection(credentials);
+        db = mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_NAME
+        });
         db.connect(function (err) {
             if (!err) {
                 logger.info('Database is connected!');
@@ -41,6 +41,9 @@ exports.executeQuery = function (query, callback) {
             logger.warn(query);
             logger.warn("SLOW QUERY ALERT: " + timeQuery + " milliseconds.");
         }
+
+        logger.error("ENV: " + process.env.NODE_ENV + "");
+
         // db.end();
         callback(err, rows);
     });
