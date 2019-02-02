@@ -25,6 +25,12 @@ footer p {
   color: #f2f2f2
 }
 
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+
 /* INDEX JADE */
 @-webkit-keyframes fadeInUpSD {0% {opacity: 0;-webkit-transform: translateY(100px);transform: translateY(100px);}100% {opacity: 1;-webkit-transform: none;transform: none;}}@keyframes fadeInUpSD {0% {opacity: 0;-webkit-transform: translateY(100px);transform: translateY(100px);}100% {opacity: 1;-webkit-transform: none;transform: none;}}.fadeInUpSD {-webkit-animation-name: fadeInUpSD;animation-name: fadeInUpSD;}
 
