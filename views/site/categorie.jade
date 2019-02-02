@@ -1,0 +1,16 @@
+extends main/layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  each categoria in categorie
+      li 
+        a(href="/categorie/#{categoria.url}") #{categoria.nome}
+      
+
+block footer
+  include main/footer.jade
+
+block nav
+  include main/navbar.jade

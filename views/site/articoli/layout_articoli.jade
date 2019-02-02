@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    script(type='text/javascript' src='/js/main/all.min.js')
+    
+    include ../main/default-css.jade
+    block add-css
+
+  body
+    header
+      block nav
+
+    #wrapperHeaderImg
+      block header
+
+    .container
+      block content
+  
+  footer.row.justify-content-md-center.bg-dark
+    block footer
+    
+  include ../main/default-js.jade
+  block add-js

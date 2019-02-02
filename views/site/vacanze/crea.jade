@@ -1,0 +1,44 @@
+extends layout_vacanze
+
+block footer
+  include ../main/footer.jade
+
+block nav
+  include ../main/navbar.jade
+
+block add-js
+  script(type='text/javascript' src='/js/crea-vacanza.js')
+
+block add-css
+  link(rel='stylesheet', href='/css/crea-vacanze.css')
+
+block content
+  section#parallax-one.company-heading.intro-type
+    .vacanza-section-header
+      .row.product-title-info
+        .col-md-12
+          h1 Crea la tua vacanza
+          h4 Completa i 3 step e ricevi un preventivo gratuito per raggiungere fantastiche mete intorno al mondo 🤩
+  
+  .title-header-box.continenti
+    span 
+      a.noHover(data-toggle='collapse', href='#collapseContinenti', role='button', aria-expanded='false', aria-controls='collapseContinenti')
+        p Seleziona la parte del mondo dove vuoi andare
+
+  #collapseContinenti.block-square.collapse.show
+    - for (var j = 0; j < continenti.length; j++)
+      if (j == 0 || j % 3 == 0)
+        .row
+          - for (var i = j; i < (3 + j); i++ )
+            - if (i >= continenti.length) break;
+              .col.grid_element_box.continenti
+                .grid_element_box_child(style='background-image: url("/img/continenti/#{continenti[i].img}"')
+                  input(type="hidden", value='#{continenti[i].id}')
+                  a #{continenti[i].nome}
+
+  #anchorNazioni.title-header-box.nazioni.d-none
+    span 
+      a.noHover()
+        p Preferisci un paese in particolare? Selezionalo!
+
+  #collapseNazioni.block-square.collapse

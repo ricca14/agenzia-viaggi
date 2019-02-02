@@ -1,0 +1,9 @@
+- for (var j = 0; j < nazioni.length; j++)
+    if (j == 0 || j % 3 == 0)
+        .row
+            - for (var i = j; i < (3 + j); i++ )
+                - if (i >= nazioni.length) break;
+                    .col.grid_element_box.nazioni
+                        .grid_element_box_child.selected(style='background-image: url("/img/nazioni/#{nazioni[i].img}"')
+                            input(type="hidden", value='#{nazioni[i].id}')
+                            a #{nazioni[i].nome}
