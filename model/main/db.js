@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 // TEST
 // const credentials = { host: 'localhost', user: 'root', password: 'reventon7', database: 'agenzia_viaggi' };
-
 // PROD
 const credentials = { host: 'uf63wl4z2daq9dbb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com', user: 'ko0glfci1sg9gt3b', password: 'pqik5yg6ixhvhiw2', database: 'hjj0cggwndc4657y' };
 
