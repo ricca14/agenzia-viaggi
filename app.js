@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const compression = require('compression');
 
 require('dotenv').config();
 
@@ -16,7 +17,7 @@ var vacanzeRouter = require('./routes/vacanze');
 const favicon = require('express-favicon');
 
 var app = express();
-
+app.use(compression());
 app.use(favicon(__dirname + '/public/img/favicon.png'));
 
 // view engine setup
