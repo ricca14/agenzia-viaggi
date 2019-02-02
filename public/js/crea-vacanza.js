@@ -11,9 +11,9 @@ $('.continenti .grid_element_box_child').on('click', function () {
             url: '/continente/' + continente,
             success: function (data) {
                 $('.title-header-box.nazioni').removeClass('d-none');
-                $('#collapseNazioni').append(data)
+                $('#collapseNazioni').append(data);
                 if (!$('#collapseNazioni').hasClass('show')) {
-                    $('#collapseNazioni').addClass('show')
+                    $('#collapseNazioni').addClass('show');
                 }
                 $('html, body').animate({
                     'scrollTop': $('#anchorNazioni').offset().top
