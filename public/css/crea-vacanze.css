@@ -54,7 +54,7 @@
     cursor: pointer;
 }
 
-.grid_element_box:hover .grid_element_box_child, .grid_element_box:focus .grid_element_box_child {
+.grid_element_box:hover .grid_element_box_child, .grid_element_box:focus .grid_element_box_child, .hover_effect {
     -ms-transform: scale(1.2);
     -moz-transform: scale(1.2);
     -webkit-transform: scale(1.2);
@@ -62,11 +62,11 @@
     transform: scale(1.2);
 }
 
-.grid_element_box:hover .grid_element_box_child:before, .grid_element_box:focus .grid_element_box_child:before {
+.grid_element_box:hover .grid_element_box_child:before, .grid_element_box:focus .grid_element_box_child:before, .hover_effect {
     display: block;
 }
 
-.grid_element_box:hover a, .grid_element_box:focus a {
+.grid_element_box:hover a, .grid_element_box:focus a, .hover_effect a {
     display: block;
 }
 

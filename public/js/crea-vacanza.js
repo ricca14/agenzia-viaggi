@@ -1,3 +1,8 @@
+$('.col.grid_element_box').on('touchstart touchend', function (e) {
+    e.preventDefault();
+    $(this).toggleClass('hover_effect');
+});
+
 $('.continenti .grid_element_box_child').on('click', function () {
     if ($(this).hasClass('selected')) {
         console.log('Continente già selezionato');
