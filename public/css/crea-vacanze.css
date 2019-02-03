@@ -36,6 +36,7 @@
     -moz-transition: all .5s;
     -o-transition: all .5s;
     transition: all .5s;
+    position: relative;
 }
 
 .grid_element_box_child a {
@@ -54,20 +55,18 @@
     cursor: pointer;
 }
 
-.grid_element_box:hover .grid_element_box_child, .grid_element_box:focus .grid_element_box_child, .hover_effect {
-    -ms-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -webkit-transform: scale(1.2);
-    -o-transform: scale(1.2);
-    transform: scale(1.2);
+.grid_element_box_child_label {
+    bottom: 0;
+    height: 50px;
+    background-color: rgba(52,73,94,0.75);
+    position: absolute;
+    width: 100%;
+    vertical-align: middle;
 }
-
-.grid_element_box:hover .grid_element_box_child:before, .grid_element_box:focus .grid_element_box_child:before, .hover_effect {
-    display: block;
-}
-
-.grid_element_box:hover a, .grid_element_box:focus a, .hover_effect a {
-    display: block;
+.grid_element_box_child_label p {
+    color: white;
+    text-align: center;
+    line-height: 50px;
 }
 
 .grid_element_box_child:before {
@@ -103,4 +102,34 @@
 @media screen and (max-width: 960px) {
     .grid_element_box {width: 100%; margin: 20px 0px}
     .block-square {padding: 20px 20px;}
+}
+
+@media screen and (min-width: 768px) {
+    .grid_element_box:hover .grid_element_box_child, 
+    .grid_element_box:focus .grid_element_box_child,
+    .hover_effect .grid_element_box_child {
+        -ms-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    .grid_element_box:hover .grid_element_box_child:before, 
+    .grid_element_box:focus .grid_element_box_child:before, 
+    .hover_effect .grid_element_box_child:before {
+        display: block;
+    }
+
+    .grid_element_box:hover a, 
+    .grid_element_box:focus a , 
+    .hover_effect a {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .grid_element_box_child_label {
+        display: block !important;
+    }
 }

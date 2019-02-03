@@ -35,6 +35,8 @@ block content
                 .grid_element_box_child(style='background-image: url("/img/continenti/#{continenti[i].img}"')
                   input(type="hidden", value='#{continenti[i].id}')
                   a #{continenti[i].nome}
+                  .grid_element_box_child_label.d-none
+                    p #{continenti[i].nome}
                 
 
   #anchorNazioni.title-header-box.nazioni.d-none

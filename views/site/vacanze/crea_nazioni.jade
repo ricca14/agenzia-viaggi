@@ -7,3 +7,5 @@
                         .grid_element_box_child.selected(style='background-image: url("/img/nazioni/#{nazioni[i].img}"')
                             input(type="hidden", value='#{nazioni[i].id}')
                             a #{nazioni[i].nome}
+                            .grid_element_box_child_label.d-none
+                                p #{nazioni[i].nome}
