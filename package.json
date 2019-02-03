@@ -9,17 +9,18 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "compression": "~1.7.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "~6.2.0",
     "express": "~4.16.0",
     "express-favicon": "^2.0.1",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0",
     "log4js": "~3.0.6",
+    "morgan": "~1.9.0",
     "mysql": "~2.16.0",
-    "dotenv": "~6.2.0",
-    "compression": "~1.7.3"
+    "nodemailer": "^5.1.1"
   },
   "engines": {
     "node": "~6.9.1"

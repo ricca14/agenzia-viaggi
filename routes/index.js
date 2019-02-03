@@ -7,6 +7,8 @@ logger.level = 'debug'; // debug, info, warn, error
 const Articolo = require('../model/articolo.js'); 
 const Contacts = require('../model/contact.js'); 
 const Vacanza = require('../model/vacanza.js');
+const nodemailer = require("nodemailer");
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -46,9 +48,44 @@ router.get('/contattaci/info', function (req, res, next) {
 router.post('/contattaci', function (req, res, next) {
   var sms = new Contacts();
   sms.insertMessaggio(req.body, function (err, response) {
+    if(err === 200) {
+      sendMailToTOTO(req.body);
+    }
     res.sendStatus(err);
   });
 });
+
+function sendMailToTOTO(params) {
+  // var telefono = '';
+  // if (params.telefono !== undefined) {
+  //   telefono = params.telefono;
+  // }
+
+  // var text = 'Da:\n'+ params.cognome + ' ' + params.nome + 
+  //   '\n\nMessaggio: \n' + params.messaggio +
+  //   '\n\Email: \n' + params.email + 
+  //   '\n\nNumero di telefono da contattare:\n' + telefono;
+  // var transporter = nodemailer.createTransport({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: 'g.ricaldone14@gmail.com',
+  //     pass: 'Reventon7'
+  //   }
+  // });
+  // var mailOptions = {
+  //   from: 'noreply@iviaggiditoto.com',
+  //   to: 's.modica@nuovevacanze.it',
+  //   subject: 'Nuovo messaggio su iviaggiditoto.com',
+  //   text: text
+  // };
+  // transporter.sendMail(mailOptions, function (error, info) {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     console.log('Email sent: ' + info.response);
+  //   }
+  // });
+}
 
 router.get('/continente/:continenteID', function (req, res, next) {
   var vacanze = new Vacanza();
@@ -63,9 +100,9 @@ router.get('/continente/:continenteID', function (req, res, next) {
       app.set('view engine', 'jade');
       app.render('site/vacanze/crea_nazioni', { nazioni: nazioni }, function (err, html) {
         if (err) {
-          logger.error(err)
+          logger.error(err);
         }
-        res.send(html)
+        res.send(html);
       });
     }
   });

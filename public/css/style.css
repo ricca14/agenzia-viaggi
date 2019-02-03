@@ -30,6 +30,33 @@ footer p {
   margin-left: 0px !important;
 }
 
+.loader-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(107,107,107, 0.4);
+}
+
+.loader {
+  position:fixed;
+  z-index: 1;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin-top: -60px; /*set to a negative number 1/2 of your height*/
+  margin-left: -60px; 
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /* INDEX JADE */
 @-webkit-keyframes fadeInUpSD {0% {opacity: 0;-webkit-transform: translateY(100px);transform: translateY(100px);}100% {opacity: 1;-webkit-transform: none;transform: none;}}@keyframes fadeInUpSD {0% {opacity: 0;-webkit-transform: translateY(100px);transform: translateY(100px);}100% {opacity: 1;-webkit-transform: none;transform: none;}}.fadeInUpSD {-webkit-animation-name: fadeInUpSD;animation-name: fadeInUpSD;}
