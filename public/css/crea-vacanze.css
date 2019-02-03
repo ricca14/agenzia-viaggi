@@ -81,12 +81,6 @@
     background-color: rgba(52,73,94,0.75);
 }
 
-
-@media screen and (max-width: 960px) {
-    .grid_element_box {width: 100%; margin: 20px 0px}
-    .block-square {padding: 20px 20px;}
-}
-
 .title-header-box {
     border: 0.5px solid #dfdfdf;
     border-radius: 5px;
@@ -104,4 +98,9 @@
 
 .title-header-box p {
   margin: 0;
+}
+
+@media screen and (max-width: 960px) {
+    .grid_element_box {width: 100%; margin: 20px 0px}
+    .block-square {padding: 20px 20px;}
 }

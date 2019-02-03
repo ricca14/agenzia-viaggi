@@ -239,11 +239,11 @@ footer p {
 }
 
 @media (max-width: 575.98px) {
-    img{
-      width:100%!important;
-      height:100%!important;
-    }
-    .text{
-      font-size:2rem;
-    }
+  img{
+    width:100%!important;
+    height:100%!important;
   }
+  .text{
+    font-size:2rem;
+  }
+}
