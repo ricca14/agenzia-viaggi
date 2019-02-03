@@ -1,7 +1,8 @@
-$('.col.grid_element_box').on('touchstart touchend', function (e) {
-    e.preventDefault();
-    $(this).toggleClass('hover_effect');
-});
+// $('.col.grid_element_box').on('touchstart touchend click', function (e) {
+//     console.log(event.type);
+//     e.preventDefault();
+//     $(this).toggleClass('hover_effect');
+// });
 
 $('.continenti .grid_element_box_child').on('click', function () {
     if ($(this).hasClass('selected')) {
@@ -10,8 +11,25 @@ $('.continenti .grid_element_box_child').on('click', function () {
     else {
         $('.continenti .grid_element_box_child').removeClass('selected');
         $(this).addClass('selected');
-        var continente = this.getElementsByTagName('INPUT')[0].value;
+        
+        // Gestione etichette piccine
+        var c = $('.continenti .grid_element_box_child_label');
+        for (var i = 0; i < c.length; i++) {
+            if ($(c[i]).hasClass('holiday-green')) {
+                $(c[i]).removeClass('holiday-green');
+                $(c[i]).addClass('holiday-blue');
+            }
+        }
+        var child = $(this).children()[0];
+        $(child).removeClass('holiday-blue');
+        $(child).addClass('holiday-green');
 
+        $('.grid_element_box.continenti').removeClass('holiday-green').removeClass('hover_effect');
+        $($(this).parent()[0]).addClass('hover_effect');
+
+        // CAPIRE COME RENDERE LA COSA PIÙ SELEZIONABILE
+
+        var continente = this.getElementsByTagName('INPUT')[0].value;
         $('.loader-container').removeClass('d-none');
         $.ajax({
             type: "GET",
@@ -43,4 +61,33 @@ $('.continenti .grid_element_box_child').on('click', function () {
             
         });
     }
+});
+
+
+$('.grid_element_box.nazioni').on('click', function () {
+
+    console.log('NAZIONI');
+
+    // if ($(this).hasClass('selected')) {
+    //     console.log('Continente già selezionato');
+    // }
+    // else {
+    //     $('.nazioni .grid_element_box_child').removeClass('selected');
+    //     $(this).addClass('selected');
+
+    //     // Gestione etichette piccine
+    //     var c = $('.nazioni .grid_element_box_child_label');
+    //     for (var i = 0; i < c.length; i++) {
+    //         if ($(c[i]).hasClass('holiday-green')) {
+    //             $(c[i]).removeClass('holiday-green');
+    //             $(c[i]).addClass('holiday-blue');
+    //         }
+    //     }
+    //     var child = $(this).children()[0];
+    //     $(child).removeClass('holiday-blue');
+    //     $(child).addClass('holiday-green');
+
+    //     $('.grid_element_box.nazioni').removeClass('holiday-green').removeClass('hover_effect');
+    //     $($(this).parent()[0]).addClass('hover_effect');
+    // }
 });
