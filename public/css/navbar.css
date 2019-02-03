@@ -42,7 +42,8 @@
   }
 }
 
-@media (min-width: 768px) {
+
+@media only screen and (min-width: 768px) {
   .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
     text-align: center;
     display: table-cell;
@@ -65,7 +66,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
     text-align: center;
     display: table-cell;
@@ -86,9 +87,10 @@
   .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
     top: -7px;
   }
+
 }
 
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
     text-align: center;
     display: table-cell;
@@ -108,5 +110,13 @@
 
   .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa > .badge {
     top: -7px;
+  }
+
+}
+
+/* TELEFONI */
+@media only screen and (max-width: 767px) {
+  nav.navbar {
+    height: 100px;
   }
 }

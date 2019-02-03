@@ -1,3 +1,6 @@
+function onSubmitForm() {
+    $('#contact-us').submit();
+}
 
 $("#nome,#cognome,#telefono,#comment").blur(function () {
     // test per grafica da eliminare

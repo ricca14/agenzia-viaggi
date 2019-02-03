@@ -42,8 +42,6 @@ exports.executeQuery = function (query, callback) {
             logger.warn("SLOW QUERY ALERT: " + timeQuery + " milliseconds.");
         }
 
-        logger.error("ENV: " + process.env.NODE_ENV + "");
-
         // db.end();
         callback(err, rows);
     });
