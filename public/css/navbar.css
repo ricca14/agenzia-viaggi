@@ -113,10 +113,3 @@
   }
 
 }
-
-/* TELEFONI */
-@media only screen and (max-width: 767px) {
-  nav.navbar {
-    height: 100px;
-  }
-}

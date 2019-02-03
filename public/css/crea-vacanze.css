@@ -80,6 +80,14 @@
     background-color: rgba(52,73,94,0.75);
 }
 
+.holiday-blue {
+    background-color: rgba(52,73,94,0.75);
+}
+
+.holiday-green {
+    background-color: rgba(0,214,68,0.75) !important;
+}
+
 .title-header-box {
     border: 0.5px solid #dfdfdf;
     border-radius: 5px;
@@ -128,7 +136,7 @@
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 770px) {
     .grid_element_box_child_label {
         display: block !important;
     }
