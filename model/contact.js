@@ -40,11 +40,13 @@ class Contacts {
     insertMessaggio(params, callback) {
         var campi = ""; var valori = "";
         for (var key in params) {
-            // check if the property/key is defined in the object itself, not in parent
-            if (campi !== "") { campi += ', '; }
-            if (valori !== "") { valori += ', '; }
-            campi += escape(key);
-            valori += "'"+params[key]+"'";
+            if (key !== 'g-recaptcha-response') {
+                // check if the property/key is defined in the object itself, not in parent
+                if (campi !== "") { campi += ', '; }
+                if (valori !== "") { valori += ', '; }
+                campi += escape(key);
+                valori += "'"+params[key]+"'";
+            }
         }
         var query = insertQuery.replace("{campi}", campi).replace("{valori}", valori);
         db.executeQuery(query, function (err, results) {
