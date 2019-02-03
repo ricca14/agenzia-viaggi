@@ -56,10 +56,15 @@ router.post('/contattaci', function (req, res, next) {
 });
 
 function sendMailToTOTO(params) {
+  var telefono = '';
+  if (params.telefono !== undefined) {
+    telefono = params.telefono;
+  }
+
   var text = 'Da:\n'+ params.cognome + ' ' + params.nome + 
     '\n\nMessaggio: \n' + params.messaggio +
     '\n\Email: \n' + params.email + 
-    '\n\nNumero di telefono da contattare:\n' + params.telefono;
+    '\n\nNumero di telefono da contattare:\n' + telefono;
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
