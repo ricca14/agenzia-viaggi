@@ -1,3 +1,8 @@
+grecaptcha.ready(function() {
+    grecaptcha.execute('6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t', { action: 'homepage' }).then(function (token) {
+        $("recaptcha").value = token;
+    });
+});
 
 $("#nome,#cognome,#telefono,#comment").blur(function () {
     // test per grafica da eliminare

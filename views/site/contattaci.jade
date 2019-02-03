@@ -3,6 +3,7 @@ extends main/layout
 block add-css
   
 block add-js
+  script(type='text/javascript' src="https://www.google.com/recaptcha/api.js?render=6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t")
   script(type='text/javascript' src='/js/contattaci.js')
 
 block footer
@@ -18,6 +19,7 @@ block content
 
     form#contact-us
       .row
+        input#recaptcha(type='hidden', name='recaptcha')
         .col-md-6.form-group
           label(for='nome') Nome
           input#nome.form-control.required(type='text', name='nome', placeholder="Nome")
