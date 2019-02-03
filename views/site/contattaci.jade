@@ -3,7 +3,7 @@ extends main/layout
 block add-css
   
 block add-js
-  script(type='text/javascript' src="https://www.google.com/recaptcha/api.js?render=6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t")
+  script(type='text/javascript' src="https://www.google.com/recaptcha/api.js")
   script(type='text/javascript' src='/js/contattaci.js')
 
 block footer
@@ -15,11 +15,9 @@ block nav
 block content
   .contact-block
     h2 Contattaci
-    //- form#contact-us(action="/contattaci" method="post", onsubmit="return validateForm()")
 
     form#contact-us
       .row
-        input#recaptcha(type='hidden', name='recaptcha')
         .col-md-6.form-group
           label(for='nome') Nome
           input#nome.form-control.required(type='text', name='nome', placeholder="Nome")
@@ -49,7 +47,7 @@ block content
           div.invalid-feedback Il campo non può essere vuoto! Dai chiedici qualcosa, saremo felici di risponderti al più presto
       .row
         .col-md-12
-          input#submit.btn.btn-primary.disabled(type='submit', value='Invia')
+          input#submit.btn.btn-primary.disabled(type='submit', value='Invia', class="g-recaptcha" data-sitekey="6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t" data-callback='onSubmitForm')
 
     // Modal
     #confirmModal.modal.fade(role='dialog')
