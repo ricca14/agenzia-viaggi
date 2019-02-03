@@ -64,10 +64,6 @@
   .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
     top: -7px;
   }
-  
-  nav.navbar {
-    height: 100px;
-  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -120,7 +116,7 @@
 
 /* TELEFONI */
 @media only screen and (max-width: 767px) {
-  /* nav.navbar {
+  nav.navbar {
     height: 100px;
-  } */
+  }
 }
