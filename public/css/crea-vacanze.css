@@ -18,7 +18,7 @@
 }
 
 .grid_element_box {
-    max-width: 45%;
+    /* max-width: 45%; */
     height: 300px;
     overflow: hidden;
     position: relative;
@@ -108,8 +108,8 @@
 }
 
 @media screen and (max-width: 960px) {
-    .grid_element_box {width: 100%; margin: 20px 0px}
-    .block-square {padding: 20px 20px;}
+    .grid_element_box { width: 100%; }
+    .block-square { padding: 20px 20px; }
 }
 
 @media screen and (min-width: 768px) {
