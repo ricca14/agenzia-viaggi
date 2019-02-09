@@ -1,4 +1,3 @@
-
 function setNazione(id) {
     div_nazione = document.getElementById('nazione-' + id);
     if ($(div_nazione).hasClass('selected')) {
@@ -9,19 +8,14 @@ function setNazione(id) {
 
         $('.nazioni .grid_element_box_child').removeClass('selected');
         $(div_nazione).addClass('selected');
-        var c = $('.nazioni .grid_element_box_child_label');
-        setSelectedAndLabel(c, $(div_nazione));
+        setSelectedAndLabel($('.nazioni .grid_element_box_child_label'), $(div_nazione));
 
         $.ajax({
             type: "GET",
             url: '/continente/form',
             success: function (data) {
                 // Rimuovo tutti gli elementi HTML per poi sostituirli
-                var element = document.getElementById("collapseInformazioni");
-                while (element.firstChild) {
-                    element.removeChild(element.firstChild);
-                }
-                $('#collapseInformazioni').append(data);
+                addHTML('collapseInformazioni', data);
 
                 // Rimuovo loader e rendo visibili nel caso le nazioni
                 showElement($('#anchorInformazioni'));
@@ -29,18 +23,105 @@ function setNazione(id) {
                 $('#collapseInformazioni').addClass('show');
 
                 // Animazione scroll verso nazioni
-                $('html, body').animate({
-                    'scrollTop': $('#anchorInformazioni').offset().top
-                }, 1250);
+                scrollToAnchor('#anchorInformazioni', 1250);
             },
             error: function (request, status, error) {
-                hideLoader()
+                hideLoader();
                 alert(request.responseText);
             }
         });
     }
 }
 
+$('.continenti .grid_element_box_child').on('click', function () {
+    if ($(this).hasClass('selected')) {
+        console.log('Continente già selezionato');
+    }
+    else {
+        showLoader();
+        $('.continenti .grid_element_box_child').removeClass('selected');
+        $(this).addClass('selected');
+        setSelectedAndLabel($('.continenti .grid_element_box_child_label'), $(this));
+
+        // Per sicurezza nascondo la parte delle informazioni
+        hideElement($('#anchorInformazioni'));
+        $('#collapseInformazioni').removeClass('show');
+        
+        $('.grid_element_box.continenti').removeClass('holiday-green').removeClass('hover_effect');
+        $($(this).parent()[0]).addClass('hover_effect');
+
+        var continente = this.getElementsByTagName('INPUT')[0].value;
+        $.ajax({
+            type: "GET",
+            url: '/continente/' + continente,
+            success: function (data) {
+                // Rimuovo tutti gli elementi HTML per poi sostituirli
+                addHTML('collapseNazioni', data);
+
+                // Rimuovo loader e rendo visibili nel caso le nazioni
+                showElement($('#anchorNazioni'));
+                hideLoader();
+                $('#collapseNazioni').addClass('show');
+
+                // Animazione scroll verso nazioni
+                scrollToAnchor('#anchorNazioni', 1250);
+            },
+            error: function (request, status, error) {
+                hideLoader();
+                alert(request.responseText);
+            } 
+        });
+    }
+});
+
+
+
+
+function onSubmitForm() {
+    $('#richiesta-vacanza').submit();
+}
+$('#richiesta-vacanza').on('submit', function (e) {
+    e.preventDefault();
+    // if the validator does not prevent form submit
+    if (validateForm()) {
+        $.ajax({
+            type: "POST",
+            url: "/crea-vacanza",
+            data: $(this).serialize(),
+            success: function (data) {
+                // data = JSON object that contact.php returns
+                $("#confirmModal").modal();
+            }
+        });
+        return false;
+    }
+});
+
+
+function scrollToAnchor(anchor, timer=0) {
+    $('html, body').animate({
+        'scrollTop': $(anchor).offset().top
+    }, timer);
+}
+function addHTML(label, data) {
+    var element = document.getElementById(label);
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+    $('#' + label).append(data);
+}
+function showLoader() {
+    $('.loader-container').removeClass('d-none');
+}
+function hideLoader() {
+    $('.loader-container').addClass('d-none');
+}
+function hideElement(element) {
+    $(element).addClass('d-none');
+}
+function showElement(element) {
+    $(element).removeClass('d-none');
+}
 function setSelectedAndLabel(list, element) {
     for (var i = 0; i < list.length; i++) {
         $(list[i]).removeClass('holiday-green').addClass('holiday-blue');
@@ -48,95 +129,4 @@ function setSelectedAndLabel(list, element) {
     var child = element.children()[0];
     $(child).removeClass('holiday-blue');
     $(child).addClass('holiday-green');
-}
-
-$(document).ready(function () {
-    $('.continenti .grid_element_box_child').on('click', function () {
-        if ($(this).hasClass('selected')) {
-            console.log('Continente già selezionato');
-        }
-        else {
-            $('.continenti .grid_element_box_child').removeClass('selected');
-            $(this).addClass('selected');
-            // Per sicurezza nascondo la parte delle informazioni
-            hideElement($('#anchorInformazioni'));
-            $('#collapseInformazioni').removeClass('show');
-            
-            // Gestione etichette piccine
-            var c = $('.continenti .grid_element_box_child_label');
-            setSelectedAndLabel(c, $(this));
-
-            $('.grid_element_box.continenti').removeClass('holiday-green').removeClass('hover_effect');
-            $($(this).parent()[0]).addClass('hover_effect');
-
-            var continente = this.getElementsByTagName('INPUT')[0].value;
-            showLoader();
-            $.ajax({
-                type: "GET",
-                url: '/continente/' + continente,
-                success: function (data) {
-                    // Rimuovo tutti gli elementi HTML per poi sostituirli
-                    var element = document.getElementById("collapseNazioni");
-                    while (element.firstChild) {
-                        element.removeChild(element.firstChild);
-                    }
-                    $('#collapseNazioni').append(data);
-
-                    // Rimuovo loader e rendo visibili nel caso le nazioni
-                    showElement($('#anchorNazioni'));
-                    hideLoader();
-                    $('#collapseNazioni').addClass('show');
-
-                    // Animazione scroll verso nazioni
-                    $('html, body').animate({
-                        'scrollTop': $('#anchorNazioni').offset().top
-                    }, 1250);
-                },
-                error: function (request, status, error) {
-                    hideLoader();
-                    alert(request.responseText);
-                } 
-            });
-        }
-    });
-
-
-    // if ($(this).hasClass('selected')) {
-    //     console.log('Continente già selezionato');
-    // }
-    // else {
-    //     $('.nazioni .grid_element_box_child').removeClass('selected');
-    //     $(this).addClass('selected');
-
-    //     // Gestione etichette piccine
-    //     var c = $('.nazioni .grid_element_box_child_label');
-    //     for (var i = 0; i < c.length; i++) {
-    //         if ($(c[i]).hasClass('holiday-green')) {
-    //             $(c[i]).removeClass('holiday-green');
-    //             $(c[i]).addClass('holiday-blue');
-    //         }
-    //     }
-    //     var child = $(this).children()[0];
-    //     $(child).removeClass('holiday-blue');
-    //     $(child).addClass('holiday-green');
-
-    //     $('.grid_element_box.nazioni').removeClass('holiday-green').removeClass('hover_effect');
-    //     $($(this).parent()[0]).addClass('hover_effect');
-    // }
-// });
-
-});
-
-function showLoader() {
-    $('.loader-container').removeClass('d-none');
-}
-function hideLoader() {
-    $('.loader-container').addClass('d-none');
-}
-
-function hideElement(element) {
-    $(element).addClass('d-none');
-}
-function showElement(element) {
-    $(element).removeClass('d-none');
 }
