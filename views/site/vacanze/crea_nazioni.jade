@@ -1,11 +1,11 @@
-- for (var j = 0; j < nazioni.length; j++)
-    if (j == 0 || j % 3 == 0)
-        .row
+.row
+    - for (var j = 0; j < nazioni.length; j++)
+        if (j == 0 || j % 3 == 0)
             - for (var i = j; i < (3 + j); i++ )
                 - if (i >= nazioni.length) break;
-                    .col.grid_element_box.nazioni
+                    .col-md-4.col-sm-6.grid_element_box.nazioni
                         .grid_element_box_child(style='background-image: url("/img/nazioni/#{nazioni[i].img}"')
-                  
+                
                             .grid_element_box_child_label.d-none
                                 p #{nazioni[i].nome}
                                 .d-none(data-name='#{nazioni[i].nome}')

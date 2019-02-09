@@ -26,9 +26,9 @@ block content
         p Seleziona la parte del mondo dove vuoi andare
 
   #collapseContinenti.block-square.collapse.show
-    - for (var j = 0; j < continenti.length; j++)
-      if (j == 0 || j % 3 == 0)
-        .row
+    .row
+      - for (var j = 0; j < continenti.length; j++)
+        if (j == 0 || j % 3 == 0)        
           - for (var i = j; i < (3 + j); i++ )
             - if (i >= continenti.length) break;
               .col-md-4.col-sm-6.grid_element_box.continenti
@@ -41,7 +41,7 @@ block content
                   .grid_element_box_child_before
                     input(type="hidden", value='#{continenti[i].id}')
                     a #{continenti[i].nome}
-                
+                  
 
   #anchorNazioni.title-header-box.nazioni.d-none
     span 

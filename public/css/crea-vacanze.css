@@ -136,8 +136,22 @@
     }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 767px) {
     .grid_element_box_child_label {
         display: block !important;
+    }    
+}
+
+@media screen and (max-width: 575px) {
+    .grid_element_box_child_label {
+        display: block !important;
+    }    
+    .grid_element_box { 
+        width: 100%; 
+        padding: 0px 0px 10px 0px;
+    }
+    .block-square { padding: 0px 20px; }
+    .title-header-box {
+        margin: 0px 10px 10px 10px;
     }
 }
