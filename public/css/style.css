@@ -162,6 +162,9 @@ footer p {
 .darkblue { background: #0054a6; }
 .gold { background: #d4ab07; }
 
+.categorie-border {
+  padding: 10px;
+}
 .overlay {
   position: absolute;
   top: 0;
@@ -178,6 +181,7 @@ footer p {
   opacity: 1;
   cursor:pointer;
 }
+
 .text {
     display: table;
     width: 100%;
@@ -263,6 +267,9 @@ footer p {
     font-size: 2.0rem;
     margin: 15px 0 10px 0;
   }
+  .categorie-box {
+    max-height: 275px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -272,5 +279,8 @@ footer p {
   }
   .text{
     font-size:2rem;
+  }  
+  .categorie-box {
+    max-height: 275px;
   }
 }

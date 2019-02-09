@@ -1,0 +1,54 @@
+form#contact-us
+    .row
+        .col-md-6.form-group
+            label(for='periodo_da') Data partenza
+            input#periodo_da.form-control.required(type='date', name='periodo_da', value='#{data_da}')
+            div.invalid-feedback Data partenza non valida :(
+        .col-md-6.form-group
+            label(for='periodo_a') Data ritorno
+            input#periodo_a.form-control.required(type='date', name='periodo_a', value='#{data_a}')
+            div.invalid-feedback Data arrivo non valida :(
+    .row
+        .col-md-6.form-group
+            label(for='nome') Nome
+            input#nome.form-control.required(type='text', name='nome', placeholder="Nome")
+            div.invalid-feedback Il campo non può essere vuoto! Dai facci sapere come ti chiami :)
+        .col-md-6.form-group
+            label(for='cognome') Cognome
+            input#cognome.form-control.required(type='text', name='cognome', placeholder="Cognome")
+            div.invalid-feedback Il campo non può essere vuoto! Dai facci sapere come ti chiami :)
+    .row
+        .col-md-6.form-group
+            label(for='email') Email
+            input#email.form-control.required(type='text', name='email', placeholder="indirizzo@mail.com")
+            div.invalid-feedback Email errata
+        .col-md-6.form-group
+            label(for='telefono') Telefono
+            input#telefono.form-control(type='text', name='telefono', placeholder="333 1234567")
+            div.invalid-feedback Campo telefono errato
+    .row 
+        .col.form-group
+            label(for="comment") Messaggio
+            textarea#comment.form-control.required(rows="5", name='messaggio', placeholder="Scrivi quello che vuoi..")
+            if msg
+                | Ciao Toto,
+                | Mi chiamo (tuo nome) e vorrei avere maggioni informazioni per un viaggio a (destinazione) per (numero) persone.
+                | Il periodo è (periodo vacanza)
+                
+            div.invalid-feedback Il campo non può essere vuoto! Dai chiedici qualcosa, saremo felici di risponderti al più presto
+    .row
+        .col-md-12
+            input#submit.btn.btn-primary.disabled(type='submit', value='Invia', class="g-recaptcha" data-sitekey="6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t" data-callback='onSubmitForm')
+
+// Modal
+#confirmModal.modal.fade(role='dialog')
+    .modal-dialog
+        // Modal content
+        .modal-content
+            .modal-header
+                h4.modal-title Grazie per composto la tua vacanza
+                button.close(type='button', data-dismiss='modal') ×
+            .modal-body
+                p Riceverai una risposta il prima possibile 🎉
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') Chiudi
