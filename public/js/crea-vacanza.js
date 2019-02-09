@@ -10,18 +10,48 @@ function setNazione(id) {
         console.log('Nazione già selezionato');
     }
     else {
+        showLoader();
+
         $('.nazioni .grid_element_box_child').removeClass('selected');
         $(div_nazione).addClass('selected');
         var c = $('.nazioni .grid_element_box_child_label');
         setSelectedAndLabel(c, $(div_nazione));
+
+        $.ajax({
+            type: "GET",
+            url: '/continente/form',
+            success: function (data) {
+                // Rimuovo tutti gli elementi HTML per poi sostituirli
+                var element = document.getElementById("collapseInformazioni");
+                while (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                }
+                $('#collapseInformazioni').append(data);
+
+                // Rimuovo loader e rendo visibili nel caso le nazioni
+                showElement($('#anchorInformazioni'));
+                hideLoader();
+                if (!$('#collapseInformazioni').hasClass('show')) {
+                    $('#collapseInformazioni').addClass('show');
+                }
+
+                // Animazione scroll verso nazioni
+                $('html, body').animate({
+                    'scrollTop': $('#anchorInformazioni').offset().top
+                }, 1250);
+            },
+            error: function (request, status, error) {
+                hideLoader()
+                alert(request.responseText);
+            }
+        });
     }
 }
 
 function setSelectedAndLabel(list, element) {
     for (var i = 0; i < list.length; i++) {
         if ($(list[i]).hasClass('holiday-green')) {
-            $(list[i]).removeClass('holiday-green');
-            $(list[i]).addClass('holiday-blue');
+            $(list[i]).removeClass('holiday-green').addClass('holiday-blue');
         }
     }
     var child = element.children()[0];
@@ -38,6 +68,9 @@ $(document).ready(function () {
         else {
             $('.continenti .grid_element_box_child').removeClass('selected');
             $(this).addClass('selected');
+            // Per sicurezza nascondo la parte delle informazioni
+            hideElement($('#anchorInformazioni'));
+            $('#collapseInformazioni').removeClass('show');
             
             // Gestione etichette piccine
             var c = $('.continenti .grid_element_box_child_label');
@@ -46,9 +79,8 @@ $(document).ready(function () {
             $('.grid_element_box.continenti').removeClass('holiday-green').removeClass('hover_effect');
             $($(this).parent()[0]).addClass('hover_effect');
 
-            
             var continente = this.getElementsByTagName('INPUT')[0].value;
-            $('.loader-container').removeClass('d-none');
+            showLoader();
             $.ajax({
                 type: "GET",
                 url: '/continente/' + continente,
@@ -61,8 +93,8 @@ $(document).ready(function () {
                     $('#collapseNazioni').append(data);
 
                     // Rimuovo loader e rendo visibili nel caso le nazioni
-                    $('#anchorNazioni').removeClass('d-none');
-                    $('.loader-container').addClass('d-none');
+                    showElement($('#anchorNazioni'));
+                    hideLoader();
                     if (!$('#collapseNazioni').hasClass('show')) {
                         $('#collapseNazioni').addClass('show');
                     }
@@ -73,7 +105,7 @@ $(document).ready(function () {
                     }, 1250);
                 },
                 error: function (request, status, error) {
-                    $('.loader-container').addClass('d-none');
+                    hideLoader()
                     alert(request.responseText);
                 } 
             });
@@ -106,3 +138,21 @@ $(document).ready(function () {
 // });
 
 });
+
+function showLoader() {
+    $('.loader-container').removeClass('d-none');
+}
+function hideLoader() {
+    $('.loader-container').addClass('d-none');
+}
+
+function hideElement(element) {
+    if (!$(element).hasClass('d-none')) {
+        $(element).addClass('d-none');
+    }
+}
+function showElement(element) {
+    if ($(element).hasClass('d-none')) {
+        $(element).removeClass('d-none');
+    }
+}
