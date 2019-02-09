@@ -56,6 +56,51 @@ router.post('/contattaci', function (req, res, next) {
   });
 });
 
+router.get('/continente/form', function (req, res, next) {
+  var app = express();
+  app.set('view engine', 'jade');
+  app.render('site/vacanze/crea_form', { data_da: dateNowFormatted(0), data_a: dateNowFormatted(14) }, function (err, html) {
+    if (err) {
+      logger.error(err);
+    }
+    res.send(html);
+  });
+});
+
+function dateNowFormatted(days) {
+  var d = new Date(Date.now());
+  if (days !== 0) {
+    d.setDate(d.getDate() + days);
+  }
+  var month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [year, month, day].join('-');
+}
+
+
+router.get('/continente/:continenteID', function (req, res, next) {
+  var vacanze = new Vacanza();
+  var continenteID = req.params.continenteID;
+  vacanze.startCreaStepNazioni(continenteID, function (errore, nazioni) {
+    if (errore != 200) {
+      logger.error(errore)
+      res.status(errore).end();
+    }
+    else {
+      var app = express();
+      app.set('view engine', 'jade');
+      app.render('site/vacanze/crea_nazioni', { nazioni: nazioni }, function (err, html) {
+        if (err) {
+          logger.error(err);
+        }
+        res.send(html);
+      });
+    }
+  });
+});
+
+
 function sendMailToTOTO(params) {
   // var telefono = '';
   // if (params.telefono !== undefined) {
@@ -87,55 +132,5 @@ function sendMailToTOTO(params) {
   //   }
   // });
 }
-
-router.get('/continente/form', function (req, res, next) {
-  var app = express();
-  app.set('view engine', 'jade');
-  data = dateNowFormatted(0);
-
-  logger.error(data);
-
-  app.render('site/vacanze/crea_form', { data_da: dateNowFormatted(0), data_a: dateNowFormatted(14) }, function (err, html) {
-    if (err) {
-      logger.error(err);
-    }
-    res.send(html);
-  });
-});
-
-function dateNowFormatted(days) {
-  var d = new Date(Date.now());
-  if (days !== 0) {
-    d.setDate(d.getDate() + days);
-  }
-  var month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-  return [year, month, day].join('-');
-}
-
-
-
-router.get('/continente/:continenteID', function (req, res, next) {
-  var vacanze = new Vacanza();
-  var continenteID = req.params.continenteID;
-  vacanze.startCreaStepNazioni(continenteID, function (errore, nazioni) {
-    if (errore != 200) {
-      logger.error(errore)
-      res.status(errore).end();
-    }
-    else {
-      var app = express();
-      app.set('view engine', 'jade');
-      app.render('site/vacanze/crea_nazioni', { nazioni: nazioni }, function (err, html) {
-        if (err) {
-          logger.error(err);
-        }
-        res.send(html);
-      });
-    }
-  });
-});
-
 
 module.exports = router;
