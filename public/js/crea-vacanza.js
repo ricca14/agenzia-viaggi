@@ -1,8 +1,3 @@
-// $('.col.grid_element_box').on('touchstart touchend click', function (e) {
-//     console.log(event.type);
-//     e.preventDefault();
-//     $(this).toggleClass('hover_effect');
-// });
 
 function setNazione(id) {
     div_nazione = document.getElementById('nazione-' + id);
@@ -31,9 +26,7 @@ function setNazione(id) {
                 // Rimuovo loader e rendo visibili nel caso le nazioni
                 showElement($('#anchorInformazioni'));
                 hideLoader();
-                if (!$('#collapseInformazioni').hasClass('show')) {
-                    $('#collapseInformazioni').addClass('show');
-                }
+                $('#collapseInformazioni').addClass('show');
 
                 // Animazione scroll verso nazioni
                 $('html, body').animate({
@@ -50,9 +43,7 @@ function setNazione(id) {
 
 function setSelectedAndLabel(list, element) {
     for (var i = 0; i < list.length; i++) {
-        if ($(list[i]).hasClass('holiday-green')) {
-            $(list[i]).removeClass('holiday-green').addClass('holiday-blue');
-        }
+        $(list[i]).removeClass('holiday-green').addClass('holiday-blue');
     }
     var child = element.children()[0];
     $(child).removeClass('holiday-blue');
@@ -60,7 +51,6 @@ function setSelectedAndLabel(list, element) {
 }
 
 $(document).ready(function () {
-
     $('.continenti .grid_element_box_child').on('click', function () {
         if ($(this).hasClass('selected')) {
             console.log('Continente già selezionato');
@@ -95,9 +85,7 @@ $(document).ready(function () {
                     // Rimuovo loader e rendo visibili nel caso le nazioni
                     showElement($('#anchorNazioni'));
                     hideLoader();
-                    if (!$('#collapseNazioni').hasClass('show')) {
-                        $('#collapseNazioni').addClass('show');
-                    }
+                    $('#collapseNazioni').addClass('show');
 
                     // Animazione scroll verso nazioni
                     $('html, body').animate({
@@ -105,7 +93,7 @@ $(document).ready(function () {
                     }, 1250);
                 },
                 error: function (request, status, error) {
-                    hideLoader()
+                    hideLoader();
                     alert(request.responseText);
                 } 
             });
@@ -147,12 +135,8 @@ function hideLoader() {
 }
 
 function hideElement(element) {
-    if (!$(element).hasClass('d-none')) {
-        $(element).addClass('d-none');
-    }
+    $(element).addClass('d-none');
 }
 function showElement(element) {
-    if ($(element).hasClass('d-none')) {
-        $(element).removeClass('d-none');
-    }
+    $(element).removeClass('d-none');
 }
