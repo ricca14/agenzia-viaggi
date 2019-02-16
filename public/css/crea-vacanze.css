@@ -149,6 +149,7 @@
     .grid_element_box { 
         width: 100%; 
         padding: 0px 0px 10px 0px;
+        height: 225px;
     }
     .block-square { padding: 0px 20px; }
     .title-header-box {
