@@ -6,19 +6,24 @@ logger.level = 'debug'; // debug, info, warn, error
 
 const Articolo = require('../model/articolo.js'); 
 const Contacts = require('../model/contact.js'); 
-const Vacanza = require('../model/vacanza.js');
-const nodemailer = require("nodemailer");
+const Vacanza = require('../model/vacanza.js'); 
+const Utils = require('./utils/utils.js');
+const utiliy = new Utils();
 
-
+const browser = require('browser-detect');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
+  logger.error(imgExt);
+
   var articolo = new Articolo();
   articolo.getLast(5, function (err, articoli) {
     res.render('site/index', {
       title: 'Home',
       route: 'Home',
-      articoli: articoli
+      articoli: articoli,
+      imgExt: imgExt
     });
   });
 });

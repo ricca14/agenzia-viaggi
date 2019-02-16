@@ -18,7 +18,7 @@ block content
   section.hero-slider
     each articolo, index in articoli 
       - var i = index + 1
-      .hero-slide.slider_background(class='slider_#{i}', style='background-image: url(/img/articoli/#{articolo.image});')
+      .hero-slide.slider_background(class='slider_#{i}', style='background-image: url(/img/articoli/#{articolo.image}#{imgExt});')
         .slider-overlay(class='slider-#{i}-overlay')
         .slide-box
           .slide-content.text-white.text-white

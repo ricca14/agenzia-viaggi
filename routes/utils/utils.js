@@ -39,6 +39,15 @@ class Utils {
         if (day.length < 2) day = '0' + day;
         return [year, month, day].join('-');
     }
+
+    getImageExtensionByBrowser(dict) {
+        if (dict.name === 'safari') {
+            return '.jpg';
+        }
+        else {
+            return '.webp';
+        }
+    }
 }
 
 module.exports = Utils;
