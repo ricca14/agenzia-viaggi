@@ -79,7 +79,7 @@ $('#richiesta-vacanza').on('submit', function (e) {
             data: $(this).serialize(),
             success: function (data) {
                 // data = JSON object that contact.php returns
-                hideLoader()
+                hideLoader();
                 $("#confirmModal").modal();
             },
             error: function (request, status, error) {
