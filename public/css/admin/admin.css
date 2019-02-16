@@ -1,0 +1,10 @@
+body {
+    background-color: white !important
+}
+
+.box-login {
+    background-color: #c5c5c5;;
+    width: 40%;
+    margin: auto;
+    border-style: solid;
+}

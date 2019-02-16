@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    title= title
+
+    include default-css.jade
+    block add-css
+
+  body
+    header
+      block nav
+
+    div
+      block content
+  
+  footer.row.justify-content-md-center.bg-dark
+    block footer
+    
+  include default-js.jade
+  block add-js

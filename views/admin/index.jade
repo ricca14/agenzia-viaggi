@@ -1,15 +1,27 @@
-extends layout
+extends main/layout
+
+block add-css
+    link(rel='stylesheet', href='/css/admin/admin.css')
+
+block add-js
+    script(type='text/javascript' src='/js/admin/admin.js')
+  
+block footer
+    include main/footer.jade
 
 block nav
-    include navbar.jade
+    include main/navbar.jade
 
 block content
-    h1= title
-    p Welcome to #{title}
-
-
-
-block footer
-    div
-        p Agenzia viaggi
+    .content
+        .box-login  
+            .row
+                .col-md-6.form-group
+                    label(for='username') USERNAME
+                    input#username.form-control.required(type='text', name='username')
+                    div.invalid-feedback Username errato.. CHI CAZZO SEI???
+                .col-md-6.form-group
+                    label(for='password') PASSWORD
+                    input#password.form-control(type='text', name='password')
+                    div.invalid-feedback Username errato.. TI DENUNCIOOOOO???
 
