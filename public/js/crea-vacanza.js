@@ -1,5 +1,7 @@
 function setNazione(id) {
     div_nazione = document.getElementById('nazione-' + id);
+    $('#nazione').val(id);
+    
     if ($(div_nazione).hasClass('selected')) {
         console.log('Nazione già selezionato');
     }
@@ -10,26 +12,13 @@ function setNazione(id) {
         $(div_nazione).addClass('selected');
         setSelectedAndLabel($('.nazioni .grid_element_box_child_label'), $(div_nazione));
 
-        $.ajax({
-            type: "GET",
-            url: '/continente/form',
-            success: function (data) {
-                // Rimuovo tutti gli elementi HTML per poi sostituirli
-                addHTML('collapseInformazioni', data);
+        // Rimuovo loader e rendo visibili nel caso le nazioni
+        showElement($('#anchorInformazioni'));
+        hideLoader();
+        $('#collapseInformazioni').addClass('show');
 
-                // Rimuovo loader e rendo visibili nel caso le nazioni
-                showElement($('#anchorInformazioni'));
-                hideLoader();
-                $('#collapseInformazioni').addClass('show');
-
-                // Animazione scroll verso nazioni
-                scrollToAnchor('#anchorInformazioni', 1250);
-            },
-            error: function (request, status, error) {
-                hideLoader();
-                alert(request.responseText);
-            }
-        });
+        // Animazione scroll verso nazioni
+        scrollToAnchor('#anchorInformazioni', 1250);
     }
 }
 
@@ -51,6 +40,7 @@ $('.continenti .grid_element_box_child').on('click', function () {
         $($(this).parent()[0]).addClass('hover_effect');
 
         var continente = this.getElementsByTagName('INPUT')[0].value;
+        $('#continente').val(continente);
         $.ajax({
             type: "GET",
             url: '/continente/' + continente,
@@ -74,9 +64,7 @@ $('.continenti .grid_element_box_child').on('click', function () {
     }
 });
 
-
-
-
+// SUBMIT FORM CREA VACANZA
 function onSubmitForm() {
     $('#richiesta-vacanza').submit();
 }
@@ -84,18 +72,26 @@ $('#richiesta-vacanza').on('submit', function (e) {
     e.preventDefault();
     // if the validator does not prevent form submit
     if (validateForm()) {
+        showLoader()
         $.ajax({
             type: "POST",
-            url: "/crea-vacanza",
+            url: "/vacanze/crea-vacanza",
             data: $(this).serialize(),
             success: function (data) {
                 // data = JSON object that contact.php returns
+                hideLoader();
                 $("#confirmModal").modal();
-            }
+            },
+            error: function (request, status, error) {
+                hideLoader();
+                alert(request.responseText);
+            } 
         });
         return false;
     }
 });
+
+
 
 
 function scrollToAnchor(anchor, timer=0) {

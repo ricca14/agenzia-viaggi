@@ -6,19 +6,22 @@ logger.level = 'debug'; // debug, info, warn, error
 
 const Articolo = require('../model/articolo.js'); 
 const Contacts = require('../model/contact.js'); 
-const Vacanza = require('../model/vacanza.js');
-const nodemailer = require("nodemailer");
+const Vacanza = require('../model/vacanza.js'); 
+const Utils = require('./utils/utils.js');
+const utiliy = new Utils();
 
-
+const browser = require('browser-detect');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
   var articolo = new Articolo();
   articolo.getLast(5, function (err, articoli) {
     res.render('site/index', {
       title: 'Home',
       route: 'Home',
-      articoli: articoli
+      articoli: articoli,
+      imgExt: imgExt
     });
   });
 });
@@ -49,35 +52,9 @@ router.get('/contattaci/info', function (req, res, next) {
 router.post('/contattaci', function (req, res, next) {
   var sms = new Contacts();
   sms.insertMessaggio(req.body, function (err, response) {
-    if(err === 200) {
-      sendMailToTOTO(req.body);
-    }
     res.sendStatus(err);
   });
 });
-
-router.get('/continente/form', function (req, res, next) {
-  var app = express();
-  app.set('view engine', 'jade');
-  app.render('site/vacanze/crea_form', { data_da: dateNowFormatted(0), data_a: dateNowFormatted(14) }, function (err, html) {
-    if (err) {
-      logger.error(err);
-    }
-    res.send(html);
-  });
-});
-
-function dateNowFormatted(days) {
-  var d = new Date(Date.now());
-  if (days !== 0) {
-    d.setDate(d.getDate() + days);
-  }
-  var month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-  return [year, month, day].join('-');
-}
-
 
 router.get('/continente/:continenteID', function (req, res, next) {
   var vacanze = new Vacanza();
@@ -99,38 +76,5 @@ router.get('/continente/:continenteID', function (req, res, next) {
     }
   });
 });
-
-
-function sendMailToTOTO(params) {
-  // var telefono = '';
-  // if (params.telefono !== undefined) {
-  //   telefono = params.telefono;
-  // }
-
-  // var text = 'Da:\n'+ params.cognome + ' ' + params.nome + 
-  //   '\n\nMessaggio: \n' + params.messaggio +
-  //   '\n\Email: \n' + params.email + 
-  //   '\n\nNumero di telefono da contattare:\n' + telefono;
-  // var transporter = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: 'g.ricaldone14@gmail.com',
-  //     pass: 'Reventon7'
-  //   }
-  // });
-  // var mailOptions = {
-  //   from: 'noreply@iviaggiditoto.com',
-  //   to: 's.modica@nuovevacanze.it',
-  //   subject: 'Nuovo messaggio su iviaggiditoto.com',
-  //   text: text
-  // };
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log('Email sent: ' + info.response);
-  //   }
-  // });
-}
 
 module.exports = router;
