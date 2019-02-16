@@ -1,11 +1,21 @@
 
-$("#nome,#cognome,#telefono,#comment").blur(function () {
-    // test per grafica da eliminare
-    // $("#confirmModal").modal();
+$("#nome,#cognome,#telefono,#comment,#numero_persone,#fascia_prezzo,#data_da,#data_a").blur(function () {
     validated(this, Boolean(this !== null && this.value !== ""));
 });
+
+// Migliorare gestione date
+// $("#data_da,#data_a").blur(function () {
+//     // test per grafica da eliminare
+//     // $("#confirmModal").modal();
+//     validated(this, Boolean(this !== null && this.value !== ""));
+// });
+
 $("#email").blur(function () {
     validated(this, Boolean(this !== null && this.value !== "" && validateEmail(this.value)));
+});
+
+$('#confirmModal').on('hidden.bs.modal', function () {
+    location.reload();
 });
 
 function validateEmail(email) {

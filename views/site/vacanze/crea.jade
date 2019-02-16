@@ -58,5 +58,81 @@ block content
         p Completa la tua vacanza, dicci cosa vorresti! 😎
 
   #collapseInformazioni.block-square.collapse
+    form#richiesta-vacanza.mt-4
+      input#continente(type="hidden", name='continente', value='')
+      input#nazione(type="hidden", name='nazione', value='')
+      .row
+          .col-md-6.form-group
+              label(for='data_da') Data partenza
+              input#data_da.form-control.required.is-valid(type='date', name='data_da', value='#{data_da}')
+              div.invalid-feedback Data partenza non valida :(
+          .col-md-6.form-group
+              label(for='data_a') Data ritorno
+              input#data_a.form-control.required.is-valid(type='date', name='data_a', value='#{data_a}')
+              div.invalid-feedback Data arrivo non valida :(
+      .row   
+          .col-md-6.form-group
+              label(for='numero_persone') Numero persone
+              select#numero_persone.form-control.required(name='numero_persone')
+                  option(value="1") 1
+                  option(value="2") 2
+                  option(value="3") 3
+                  option(value="4") 4
+                  option(value="99") 5 o più
+              div.invalid-feedback Ehi, non vorrai far partire l'aereo vuoto?! Dicci in quanti siete in questo viaggio
+          .col-md-6.form-group
+              label(for='fascia_prezzo') Indicazione Budget a persona (Tranquillo, non è un informazione vincolante 😄)
+              select#fascia_prezzo.form-control(name='fascia_prezzo')
+                  option(value="Non specificato")
+                  option(value="0 - 500") 0 - 500
+                  option(value="500 - 1000") 500 - 1000
+                  option(value="1000 - 2000") 1000 - 2000
+                  option(value="più di 2000") più di 2000
+              div.invalid-feedback 
+      .row
+          .col-md-6.form-group
+              label(for='nome') Nome
+              input#nome.form-control.required(type='text', name='nome', placeholder="Nome")
+              div.invalid-feedback Il campo non può essere vuoto! Dai facci sapere come ti chiami :)
+          .col-md-6.form-group
+              label(for='cognome') Cognome
+              input#cognome.form-control.required(type='text', name='cognome', placeholder="Cognome")
+              div.invalid-feedback Il campo non può essere vuoto! Dai facci sapere come ti chiami :)
+      .row
+          .col-md-6.form-group
+              label(for='email') Email
+              input#email.form-control.required(type='text', name='email', placeholder="indirizzo@mail.com")
+              div.invalid-feedback Email errata
+          .col-md-6.form-group
+              label(for='telefono') Telefono
+              input#telefono.form-control(type='text', name='telefono', placeholder="333 1234567")
+              div.invalid-feedback Campo telefono errato
+      .row 
+          .col.form-group
+              label(for="comment") Messaggio
+              textarea#comment.form-control.required(rows="5", name='messaggio', placeholder="Scrivi quello che vuoi..")
+              if msg
+                  | Ciao Toto,
+                  | Mi chiamo (tuo nome) e vorrei avere maggioni informazioni per un viaggio a (destinazione) per (numero) persone.
+                  | Il periodo è (periodo vacanza)
+                  
+              div.invalid-feedback Il campo non può essere vuoto! Dai chiedici qualcosa, saremo felici di risponderti al più presto
+      .row
+          .col-md-12
+              input#submit.btn.btn-primary.disabled(type='submit', value='Invia', class="g-recaptcha" data-sitekey="6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t" data-callback='onSubmitForm')
+              //- input#submit.btn.btn-primary.disabled(type='submit', value='Invia', data-callback='onSubmitForm')
+
+    // Modal
+    #confirmModal.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Grazie per composto la tua vacanza
+            button.close(type='button', data-dismiss='modal') ×
+          .modal-body
+            p Riceverai una risposta il prima possibile 🎉
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Chiudi
 
   
