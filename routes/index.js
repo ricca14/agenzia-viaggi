@@ -14,9 +14,7 @@ const browser = require('browser-detect');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
-  logger.error(imgExt);
-
+  var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
   var articolo = new Articolo();
   articolo.getLast(5, function (err, articoli) {
     res.render('site/index', {
