@@ -49,9 +49,6 @@ router.get('/contattaci/info', function (req, res, next) {
 router.post('/contattaci', function (req, res, next) {
   var sms = new Contacts();
   sms.insertMessaggio(req.body, function (err, response) {
-    if(err === 200) {
-      sendMailToTOTO(req.body);
-    }
     res.sendStatus(err);
   });
 });

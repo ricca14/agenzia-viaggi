@@ -12,8 +12,19 @@ $('#contact-us').on('submit', function (e) {
             success: function (data) {
                 // data = JSON object that contact.php returns
                 $("#confirmModal").modal();
-            }
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            } 
+            
         });
         return false;
     }
 });
+
+function showLoader() {
+    $('.loader-container').removeClass('d-none');
+}
+function hideLoader() {
+    $('.loader-container').addClass('d-none');
+}
