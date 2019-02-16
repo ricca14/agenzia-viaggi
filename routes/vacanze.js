@@ -55,4 +55,12 @@ router.get('/:vacanzaUrl', function (req, res, next) {
     });
 });
 
+router.post('/crea-vacanza', function (req, res, next) {
+    
+    logger.error("\n RICCA \n");
+    logger.error(req.body);
+
+});
+
+
 module.exports = router;
