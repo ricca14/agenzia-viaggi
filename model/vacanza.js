@@ -13,14 +13,26 @@ class Vacanza {
     getAll(callback) {
         var query = setDefaultWhere('');
         db.executeQuery(query, function (err, results) {
-            callback(getErroceCodeByResult(query, results), results);
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
         });
     }
 
     getLast(callback) {
         var query = setDefaultWhere('', 12);
         db.executeQuery(query, function (err, results) {
-            callback(getErroceCodeByResult(query, results), results);
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
         });
     }
 
@@ -54,14 +66,30 @@ class Vacanza {
     startCreaStepContinenti(callback) {
         var query = "select id, nome, icon, img from continenti where visibile = 1 order by ordine asc;";
         db.executeQuery(query, function (err, results) {
-            callback(getErroceCodeByResult(query, results), results);
+            if (typeof results !== 'undefined' && results.length > 0) {
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
         });
     }
     startCreaStepNazioni(continenteId, callback) {
         var query = "select * from nazioni where continente = {continente} and evidenza = 1 order by ordine asc;";
         query = query.replace("{continente}", continenteId);
         db.executeQuery(query, function (err, results) {
-            callback(getErroceCodeByResult(query, results), results);
+            if (typeof results !== 'undefined' && results.length > 0) {
+                callback(200, results);
+            }
+            else {
+                if (err) {
+                    logger.error(err);
+                }
+                if (results.length === 0) {
+                    logger.error(query + ' - NO DATA REUTRNED');
+                }
+                callback(418, results);
+            }
         });
     }
 
@@ -83,13 +111,6 @@ class Vacanza {
     }
 }
 
-function getErroceCodeByResult(query, result) {
-    if (typeof results !== 'undefined' && results.length > 0) { return 200; }
-    else {
-        logger.error(query + ' - NO DATA REUTRNED');
-        return 418;
-    }
-}
 function getErroceCodeByERR(err) {
     if (err) { return 418; }
     else { return 200; }
