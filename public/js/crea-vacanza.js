@@ -10,26 +10,28 @@ function setNazione(id) {
         $(div_nazione).addClass('selected');
         setSelectedAndLabel($('.nazioni .grid_element_box_child_label'), $(div_nazione));
 
-        $.ajax({
-            type: "GET",
-            url: '/continente/form',
-            success: function (data) {
-                // Rimuovo tutti gli elementi HTML per poi sostituirli
-                addHTML('collapseInformazioni', data);
+        // Rimuovo loader e rendo visibili nel caso le nazioni
+        showElement($('#anchorInformazioni'));
+        hideLoader();
+        $('#collapseInformazioni').addClass('show');
 
-                // Rimuovo loader e rendo visibili nel caso le nazioni
-                showElement($('#anchorInformazioni'));
-                hideLoader();
-                $('#collapseInformazioni').addClass('show');
+        // Animazione scroll verso nazioni
+        scrollToAnchor('#anchorInformazioni', 1250);
 
-                // Animazione scroll verso nazioni
-                scrollToAnchor('#anchorInformazioni', 1250);
-            },
-            error: function (request, status, error) {
-                hideLoader();
-                alert(request.responseText);
-            }
-        });
+        // $.ajax({
+        //     type: "GET",
+        //     url: '/continente/form',
+        //     success: function (data) {
+        //         // Rimuovo tutti gli elementi HTML per poi sostituirli
+        //         addHTML('collapseInformazioni', data);
+
+
+        //     },
+        //     error: function (request, status, error) {
+        //         hideLoader();
+        //         alert(request.responseText);
+        //     }
+        // });
     }
 }
 
@@ -78,24 +80,27 @@ $('.continenti .grid_element_box_child').on('click', function () {
 
 
 function onSubmitForm() {
-    $('#richiesta-vacanza').submit();
+    console.log('AAAAA');
+    // $('#richiesta-vacanza').submit();
 }
 $('#richiesta-vacanza').on('submit', function (e) {
     e.preventDefault();
     // if the validator does not prevent form submit
-    if (validateForm()) {
-        $.ajax({
-            type: "POST",
-            url: "/crea-vacanza",
-            data: $(this).serialize(),
-            success: function (data) {
-                // data = JSON object that contact.php returns
-                $("#confirmModal").modal();
-            }
-        });
-        return false;
-    }
+    // if (validateForm()) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/crea-vacanza",
+    //         data: $(this).serialize(),
+    //         success: function (data) {
+    //             // data = JSON object that contact.php returns
+    //             $("#confirmModal").modal();
+    //         }
+    //     });
+    //     return false;
+    // }
 });
+
+
 
 
 function scrollToAnchor(anchor, timer=0) {

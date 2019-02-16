@@ -24,12 +24,14 @@ router.get('/', function (req, res, next) {
 router.get('/crea', function (req, res, next) {
     var vacanze = new Vacanza();
     vacanze.startCreaStepContinenti(function (err, continenti) {
-        logger.error(continenti)
+        logger.error(continenti);
         res.render(utiliy.getViewByURL(route, 'crea'), {
             title: 'Vacanze',
             route: route,
             continenti: continenti,
             nazioni: [],
+            data_da: utiliy.dateNowFormatted(0), 
+            data_a: utiliy.dateNowFormatted(14),
         });
     });
 });
@@ -61,6 +63,8 @@ router.post('/crea-vacanza', function (req, res, next) {
     logger.error(req.body);
 
 });
+
+
 
 
 module.exports = router;

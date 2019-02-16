@@ -28,6 +28,17 @@ class Utils {
             }
         });
     }
+
+    dateNowFormatted(days) {
+        var d = new Date(Date.now());
+        if (days !== 0) {
+            d.setDate(d.getDate() + days);
+        }
+        var month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+        return [year, month, day].join('-');
+    }
 }
 
 module.exports = Utils;

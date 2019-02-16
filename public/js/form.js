@@ -4,6 +4,7 @@ $("#nome,#cognome,#telefono,#comment").blur(function () {
     // $("#confirmModal").modal();
     validated(this, Boolean(this !== null && this.value !== ""));
 });
+
 $("#email").blur(function () {
     validated(this, Boolean(this !== null && this.value !== "" && validateEmail(this.value)));
 });
