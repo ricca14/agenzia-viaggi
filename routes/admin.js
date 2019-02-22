@@ -35,8 +35,6 @@ router.post('/login', function (req, res, next) {
     res.sendStatus(err);
   });
 });
-
-
 function getCookie(req) {
   // check if client sent cookie
   var cookie = req.cookies.adminLogin;
@@ -45,7 +43,7 @@ function getCookie(req) {
 function setCookie(res) {
   var randomNumber = Math.random().toString();
   randomNumber = randomNumber.substring(2, randomNumber.length);
-  res.cookie('adminLogin', randomNumber, { maxAge: 900000, httpOnly: true });
+  res.cookie('adminLogin', randomNumber, { maxAge: 3600000, httpOnly: true });
   logger.error('cookie created successfully');
 }
 

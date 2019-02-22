@@ -10,7 +10,6 @@ $('#login-form').on('submit', function (e) {
         url: "/admin/login",
         data: $(this).serialize(),
         success: function (data) {
-            console.log(data);
             hideLoader();
             location.reload();
         },
