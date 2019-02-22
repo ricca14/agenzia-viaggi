@@ -61,7 +61,7 @@ router.get('/continente/:continenteID', function (req, res, next) {
   var continenteID = req.params.continenteID;
   vacanze.startCreaStepNazioni(continenteID, function (errore, nazioni) {
     if (errore != 200) {
-      logger.error(errore)
+      logger.error(errore);
       res.status(errore).end();
     }
     else {

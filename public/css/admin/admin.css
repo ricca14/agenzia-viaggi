@@ -1,0 +1,47 @@
+body {
+    background-color: white !important;
+    height: 100%;
+    margin: 0;
+}
+footer {
+    bottom: 0;
+}
+
+.loader-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(107,107,107, 0.4);
+}
+
+.loader {
+  position:fixed;
+  z-index: 1;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin-top: -60px; /*set to a negative number 1/2 of your height*/
+  margin-left: -60px; 
+  top: 50%;
+  left: 50%;
+}
+
+
+.box-login {
+    background-color: #c5c5c5;
+    width: 60%;
+    border-style: solid;
+    padding: 25px;
+    position:absolute;
+    color:#fff;
+    top:50%;
+    left:50%;
+    padding:15px;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
