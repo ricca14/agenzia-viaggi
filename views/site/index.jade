@@ -7,6 +7,8 @@ block add-js
   script(type='text/javascript' src='/js/main/tether.min.js')
   script(type='text/javascript' src='/js/main/slick.min.js')
   script(type='text/javascript' src='/js/home.js')
+  //- script(src='https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js')
+
   
 block footer
   include main/footer.jade
@@ -79,7 +81,31 @@ block content
     .col-md-6.col-sm-6
       .context
 
-    .col-md-6.col-sm-6
-      .context
+  .row
+    .container.testimonial-group
+      .row.text-center
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
+        include ./index/card.jade
 
+          //- .col-xs-4
+          //-   include ./index/card.jade
+          //- .col-xs-4
+          //-   include ./index/card.jade
+          //- .col-xs-4
+          //-   include ./index/card.jade
+          //- .col-xs-4
+          //-   include ./index/card.jade
+          //- .col-xs-4
+          //-   include ./index/card.jade
+          //- .col-xs-4
+          //-   include ./index/card.jade
 
