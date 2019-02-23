@@ -15,7 +15,7 @@ $('#login-form').on('submit', function (e) {
         },
         error: function (request, status, error) {
             hideLoader();
-            alert(request.responseText);
+            alert('ERRORE LOGIN! Utente non valido');
         }
     });
 });
