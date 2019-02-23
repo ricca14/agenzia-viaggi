@@ -273,7 +273,8 @@ footer p {
     margin: 15px 0 10px 0;
   }
   .categorie-box {
-    max-height: 275px;
+    /* max-height: 275px; */
+    max-height: 200px;
   }
 }
 
