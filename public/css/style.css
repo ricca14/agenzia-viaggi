@@ -216,20 +216,9 @@ footer p {
   background-position: 50% 50%;
 }
 
-/* The heart of the matter */
-.testimonial-group > .row {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.testimonial-group > .row > .card {
-  display: inline-block;
-  float: none;
-}
-
 .card-body {
     min-height: 300px;
-    min-width: 300px;
-    margin-right: 5px;
+    width: 100%;
 }
 
 /* TABLET E IPAD */

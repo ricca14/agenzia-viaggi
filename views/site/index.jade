@@ -82,21 +82,9 @@ block content
     .col-md-6.col-sm-6
       .context
 
-  .row-horizon
-    .col-xs-6
-      include ./index/card.jade
-    .col-xs-6
-      include ./index/card.jade    
-    .col-xs-6
-      include ./index/card.jade   
-    .col-xs-6
-      include ./index/card.jade    
-    .col-xs-6
-      include ./index/card.jade
-    .col-xs-6
-      include ./index/card.jade   
-    .col-xs-6
-      include ./index/card.jade    
-    .col-xs-6
-      include ./index/card.jade
-
+  .container.mt-3
+    .row-horizon
+      each articolo, index in articoli 
+        .col-md-3.col-sm-6
+          include ./index/card.jade
+      
