@@ -20,7 +20,6 @@ class Utils {
 
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
-                // Model con dati corretti
                 callback(200, results);
             }
             else {

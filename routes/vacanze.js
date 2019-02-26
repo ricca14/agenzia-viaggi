@@ -10,6 +10,8 @@ const utiliy = new Utils();
 const route = 'vacanze';
 const browser = require('browser-detect');
 
+const key = ['date', 'prezzo'];
+
 // VIEW
 router.get('/', function (req, res, next) {
     var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
@@ -28,7 +30,6 @@ router.get('/crea', function (req, res, next) {
     var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
     var vacanze = new Vacanza();
     vacanze.startCreaStepContinenti(function (err, continenti) {
-        logger.error(continenti);
         res.render(utiliy.getViewByURL(route, 'crea'), {
             title: 'Vacanze',
             route: route,
@@ -72,8 +73,5 @@ router.post('/crea-vacanza', function (req, res, next) {
         res.sendStatus(err);
     });
 });
-
-
-
 
 module.exports = router;

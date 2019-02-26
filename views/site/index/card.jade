@@ -1,6 +1,6 @@
 .card
-    img.card-img-top(src='/img/vacanze.jpg', alt='Card image cap')
+    img.card-img-top(src='/img/vacanze/#{vacanza.image}#{imgExt}', alt='#{vacanza.image_alt}')
     .card-body
-        h5.card-title TITOLO DELLA VACANZA     
-        p.card-text Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-    a.btn.btn-primary(href='#') Dettagli..
+        h5.card-title #{vacanza.titolo}  
+        p.card-text #{vacanza.descrizione_breve}
+    a.btn.btn-primary(href='/vacanze/#{vacanza.url}') Dettagli..

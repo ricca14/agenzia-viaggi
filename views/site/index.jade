@@ -78,25 +78,12 @@ block content
       h1.title-header.text-center Le nostre offerte 
       h5.text-center Vuoi partire ma non sai dove andare? 🤔 Ecco alcuni pacchetti fatti apposta per te 
 
-  .row
-    .col-md-6.col-sm-6
-      .context
-
   .container.mt-3
     .row-horizon
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      .col-md-4.col-sm-6
-        include ./index/card.jade
-      //- each articolo, index in articoli 
-      //-   .col-md-3.col-sm-6
-      //-     include ./index/card.jade
+      each vacanza, index in vacanze 
+        .col-md-3.col-sm-6
+          include ./index/card.jade
+
+  .row.mt-3
+    .banner
       

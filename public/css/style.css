@@ -198,6 +198,13 @@ footer p {
     width: 100%;
 }
 
+.banner {
+    margin: 10px;
+    background-color: #0054a6;
+    width: 100%;
+    min-height: 50px;
+}
+
 /* CONTATTACI */
 .contact-block {
   padding:20px;

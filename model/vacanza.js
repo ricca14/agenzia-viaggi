@@ -23,8 +23,8 @@ class Vacanza {
         });
     }
 
-    getLast(callback) {
-        var query = setDefaultWhere('', 12);
+    getLast(n_vacanze, callback) {
+        var query = setDefaultWhere('', n_vacanze);
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
                 // Model con dati corretti
