@@ -204,6 +204,9 @@ footer p {
     width: 100%;
     min-height: 50px;
 }
+.card-img-top {
+    max-height: 150px;
+}
 
 /* CONTATTACI */
 .contact-block {
