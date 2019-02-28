@@ -44,7 +44,6 @@ function setCookie(res) {
   var randomNumber = Math.random().toString();
   randomNumber = randomNumber.substring(2, randomNumber.length);
   res.cookie('adminLogin', randomNumber, { maxAge: 3600000, httpOnly: true });
-  logger.error('cookie created successfully');
 }
 
 module.exports = router;

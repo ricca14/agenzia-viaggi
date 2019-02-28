@@ -2,11 +2,14 @@ extends main/layout
 
 block add-css
   link(rel='stylesheet', href='/css/slick.min.css')
+  link(rel='stylesheet', href='/css/main/bootstrap-horizon.css')
+  
 
 block add-js
   script(type='text/javascript' src='/js/main/tether.min.js')
   script(type='text/javascript' src='/js/main/slick.min.js')
   script(type='text/javascript' src='/js/home.js')
+
   
 block footer
   include main/footer.jade
@@ -33,53 +36,56 @@ block content
     .col-md-3.col-sm-6.categorie-border
       .context.categorie-box
         a(href="/articoli")
-          img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
-          .overlay.green
+          //- img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
+          .overlay.cat-color
             .text.text-white.text-center
               div
                 p
                   i.fas.fa-book.fa-2x
-                p Le mie vacanze
+                p.text-white Le mie vacanze
     .col-md-3.col-sm-6.categorie-border
       .context.categorie-box
         a(href="/vacanze")
-          img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
-          .overlay.darkblue
+          //- img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
+          .overlay.cat-color
             .text.text-white.text-center
               div
                 p
                   i.fas.fa-umbrella-beach.fa-2x
-                p Offerte vacanze
+                p.text-white Offerte vacanze
     .col-md-3.col-sm-6.categorie-border
       .context.categorie-box
         a(href="/categorie/last-minute")
-          img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
-          .overlay.gold
+          //- img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
+          .overlay.cat-color
             .text.text-white.text-center
               div
                 p
                   i.fas.fa-plane-departure.fa-2x
-                p Las Minute
+                p.text-white Last Minute
     .col-md-3.col-sm-6.categorie-border
       .context.categorie-box
         a(href="/vacanze/crea")
-          img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
-          .pink.overlay
+          //- img.img-fluid.mx-auto.d-block(src='https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg', alt='')
+          .overlay.cat-color
             .text.text-white.text-center
               div
                 p
                   i.fas.fa-gift.fa-2x
-                p Crea la tua vacanza
+                p.text-white Crea la tua vacanza
   .row
     .col
       h1.title-header.text-center Le nostre offerte 
       h5.text-center Vuoi partire ma non sai dove andare? 🤔 Ecco alcuni pacchetti fatti apposta per te 
 
-  .row
-    .col-md-6.col-sm-6
-      .context
+  .container.mt-3
+    .row-horizon
+      each vacanza, index in vacanze 
+        .col-md-4.col-sm-6
+          include ./index/card.jade
 
-    .col-md-6.col-sm-6
-      .context
-
-
+  .row.mt-3
+    .banner
+      
+  .row.mt-3
+    //- BOX VACANZE PER MOOD

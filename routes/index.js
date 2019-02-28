@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var log4js = require('log4js');
 var logger = log4js.getLogger();
+var async = require("async");
 logger.level = 'debug'; // debug, info, warn, error
 
 const Articolo = require('../model/articolo.js'); 
@@ -14,13 +15,26 @@ const browser = require('browser-detect');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
-  var articolo = new Articolo();
-  articolo.getLast(5, function (err, articoli) {
+  async.parallel({
+    articoli: function (callback) {
+      var articolo = new Articolo();
+      articolo.getLast(5, function (err, articoli) {
+        callback(null, articoli);
+      });
+    },
+    vacanze: function (callback) {
+      var vacanza = new Vacanza();
+      vacanza.getLast(10, function (err, vacanze) {
+        callback(null, vacanze);
+      });
+    }
+  }, function (err, results) {
+    var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
     res.render('site/index', {
       title: 'Home',
       route: 'Home',
-      articoli: articoli,
+      articoli: results.articoli,
+      vacanze: results.vacanze,
       imgExt: imgExt
     });
   });

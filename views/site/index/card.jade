@@ -1,0 +1,6 @@
+.card
+    img.card-img-top(src='/img/vacanze/#{vacanza.image}#{imgExt}', alt='#{vacanza.image_alt}')
+    .card-body
+        h5.card-title #{vacanza.titolo}  
+        p.card-text #{vacanza.descrizione_breve}
+    a.btn.btn-primary(href='/vacanze/#{vacanza.url}') Dettagli..
