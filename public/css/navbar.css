@@ -19,6 +19,7 @@
   top: -10px;
 }
 
+
 @media (min-width: 576px) {
   .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
     text-align: center;
@@ -28,7 +29,9 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-
+  .nav-logo {
+    height: 40px;
+  }
   .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
     display: block;
     width: 48px;
@@ -52,7 +55,9 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-
+  .nav-logo {
+    height: 40px;
+  }
   .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa {
     display: block;
     width: 48px;
@@ -75,7 +80,9 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-
+  .nav-logo {
+    height: 40px;
+  }
   .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
     display: block;
     width: 48px;
@@ -99,7 +106,9 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-
+  .nav-logo {
+    height: 40px;
+  }
   .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa {
     display: block;
     width: 48px;
