@@ -15,11 +15,13 @@ router.get('/', function (req, res, next) {
 function renderLogin(res) {
   res.render('admin/login', {
     title: 'Admin',
+    section: 'home'
   });
 }
 function renderIndex(res) {
   res.render('admin/index', {
     title: 'Admin',
+    section: 'home'
   });
 }
 
