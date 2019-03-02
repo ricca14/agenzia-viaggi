@@ -8,12 +8,13 @@ class Utils {
     getViewByURL(route, url) {
         var path_file = './views/site/' + route + '/' + url + '.jade';
         logger.debug('VIEW: ' + path_file);
-        if (fs.existsSync(path_file)) {
-            return 'site/' + route + '/' + url;
-        }
-        else {
-            return 'site/' + route + '/default';
-        }   
+        if (fs.existsSync(path_file)) { return 'site/' + route + '/' + url; }
+        else { return 'site/' + route + '/default'; }   
+    }
+    getAdminViewByURL(url) {
+        var path_file = './views/admin/' + url + '.jade';
+        if (fs.existsSync(path_file)) { return 'admin/' + url; }
+        else { return 'admin/default'; }
     }
     getParametro(tipo, chiave, callback) {
         var query = "SELECT * FROM parametri WHERE tipo = {tipo} AND chiave = {chiave};".replace("{tipo}", tipo).replace("{chiave}", chiave);
