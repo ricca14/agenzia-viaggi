@@ -10,6 +10,13 @@ function setDefaultWhere(condition, limit = false) {
 class Admin {
     constructor() { }
 
+    insertAccesso(utente) {
+        var query = "INSERT INTO `accessi` (`utente`) VALUES ('{utente}')".replace({ utente }, utente);
+        db.executeQuery(query, function (err, results) {
+            logger.warn('Accesso inserito');
+        });
+    }
+
     checkLogin(params, callback) {
         var query = defaultQueryLogin.replace("{username}", params.username).replace("{password}", params.password);
         db.executeQuery(query, function (err, results) {
@@ -22,6 +29,31 @@ class Admin {
             }
         });
     }
+    getAllContinenti(callback) {
+        var query = 'select * from continenti;';
+        db.executeQuery(query, function (err, results) {
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
+        });
+    }
+    getAllNazioni(callback) {
+        var query = 'select * from nazioni;';
+        db.executeQuery(query, function (err, results) {
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
+        });
+    }
+
 }
 
 module.exports = Admin;

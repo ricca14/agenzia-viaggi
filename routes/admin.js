@@ -7,6 +7,7 @@ var logger = log4js.getLogger();
 logger.level = 'debug';
 
 const Admin = require('../model/admin.js');
+const admin = new Admin();
 const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
 var nome_utente = '';
@@ -22,6 +23,7 @@ router.get('/', function (req, res, next) {
 // MAIN ROUTE
 router.get('/:section', function (req, res, next) {
   nome_utente = getCookie(req);
+  admin.insertAccesso(nome_utente);
   if (nome_utente) {
     section = req.url.replace('/', '');
     switch (section) {
@@ -99,19 +101,25 @@ function renderCategorie(res) {
   });
 }
 function renderContinenti(res) {
-  res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
-    section: section,
-    nome_utente: nome_utente
+  admin.getAllContinenti(function (err, continenti) {
+    res.render(utiliy.getAdminViewByURL(section), {
+      title: 'Admin',
+      section: section,
+      nome_utente: nome_utente,
+      continenti: continenti
+    });
   });
 }
 function renderNazioni(res) {
-  res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
-    section: section,
-    nome_utente: nome_utente
+  admin.getAllNazioni(function (err, nazioni) {
+    res.render(utiliy.getAdminViewByURL(section), {
+      title: 'Admin',
+      section: section,
+      nome_utente: nome_utente
+    });
   });
 }
+
 function renderTag(res) {
   res.render(utiliy.getAdminViewByURL(section), {
     title: 'Admin',
@@ -158,5 +166,6 @@ function setCookie(res, result) {
   expires = 3600000 * 24 * 15; 
   res.cookie('adminLogin', nome_utente, { maxAge: expires, httpOnly: true });
 }
+
 
 module.exports = router;
