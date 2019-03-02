@@ -38,7 +38,8 @@ exports.executeQuery = function (query, callback) {
         var t1 = Date.now();
         var timeQuery = (t1 - t0);
         if (timeQuery > 50) {
-            logger.warn(query);
+            if (query.search("password") > -1) { logger.warn('Query login lenta'); }
+            else { logger.warn(query); }
             logger.warn("SLOW QUERY ALERT: " + timeQuery + " milliseconds.");
         }
 

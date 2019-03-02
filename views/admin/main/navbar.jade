@@ -1,21 +1,10 @@
-//- nav.navbar.navbar-icon-top.navbar-expand-lg.navbar-light.bg-warning
-nav.navbar.navbar-icon-top.navbar-expand-xl.navbar-dark.bg-dark
-  a.navbar-brand(href='/') ADMIN
-  |   
-  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-    span.navbar-toggler-icon
-  |   
-  #navbarSupportedContent.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto
-      //- li.nav-item(class=(route === "articoli" ? 'active' : ''))    
-      //-   a.nav-link(href='/articoli')
-      //-     i.fa.fa-book
-      //-     |  I miei Viaggi
-      //- li.nav-item(class=(route === "chi_siamo" ? 'active' : ''))
-      //-   a.nav-link(href='/chi_siamo')
-      //-     i.fa.fa-dragon
-      //-     |  Chi siamo
-      //- li.nav-item(class=(route === "contattaci" ? 'active' : ''))
-      //-   a.nav-link(href='/contattaci')
-      //-     i.fa.fa-edit
-      //-     |  Contattaci
+.sidenav
+  a(class=(section === "home" ? "selected" : ""), href='/admin/') Home
+  a(class=(section === "localita" ? "selected" : ""), href='/admin/localita') Località
+  a(class=(section === "vacanze" ? "selected" : ""), href='/admin/vacanze') Pacchetti vacanze
+  a(class=(section === "alloggi" ? "selected" : ""), href='/admin/alloggi') Alloggi
+  a(class=(section === "categorie" ? "selected" : ""), href='/admin/categorie') Categorie
+  a(class=(section === "continenti" ? "selected" : ""), href='/admin/continenti') Continenti
+  a(class=(section === "nazioni" ? "selected" : ""), href='/admin/nazioni') Nazioni
+  a(class=(section === "tag" ? "selected" : ""), href='/admin/tag') Tag
+  a(class=(section === "immagini" ? "selected" : ""), href='/admin/immagini') Immagini

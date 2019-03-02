@@ -2,7 +2,7 @@ var db = require('./main/db');
 var log4js = require('log4js');
 var logger = log4js.getLogger();
 logger.level = 'debug';
-const defaultQueryLogin = "SELECT * FROM users WHERE username = '{username}' and password = '{password}' and is_admin = 1;";
+const defaultQueryLogin = "SELECT nome, cognome, nome_display FROM users WHERE username = '{username}' and password = '{password}' and is_admin = 1;";
 
 function setDefaultWhere(condition, limit = false) {
     return defaultQuery.replace("{where}", condition).replace("{limit}", limit ? ' LIMIT ' + limit : '');
