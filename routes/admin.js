@@ -153,10 +153,10 @@ function getCookie(req) {
 }
 
 function setCookie(res, result) {
-  user = result[0].nome_display;
+  nome_utente = result[0].nome_display;
   // setto tempo expires a 15gg (3600000 sec = 1 ora)
   expires = 3600000 * 24 * 15; 
-  res.cookie('adminLogin', user, { maxAge: expires, httpOnly: true });
+  res.cookie('adminLogin', nome_utente, { maxAge: expires, httpOnly: true });
 }
 
 module.exports = router;
