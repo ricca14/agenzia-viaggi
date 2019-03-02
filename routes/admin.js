@@ -16,7 +16,9 @@ var section = '';
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   var c = getCookie(req);
-  if (c) { renderIndex(res, c); }
+  if (c) { 
+    admin.insertAccesso(c, 'index');
+    renderIndex(res, c); }
   else { renderLogin(res); }
 });
 
@@ -115,7 +117,8 @@ function renderNazioni(res) {
     res.render(utiliy.getAdminViewByURL(section), {
       title: 'Admin',
       section: section,
-      nome_utente: nome_utente
+      nome_utente: nome_utente,
+      nazioni: nazioni
     });
   });
 }

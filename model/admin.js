@@ -33,7 +33,7 @@ class Admin {
         });
     }
     getAllContinenti(callback) {
-        var query = 'select * from continenti;';
+        var query = 'select * from continenti order by ordine;';
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
                 // Model con dati corretti
