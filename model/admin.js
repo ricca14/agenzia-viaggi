@@ -11,7 +11,7 @@ class Admin {
     constructor() { }
 
     insertAccesso(utente) {
-        var query = "INSERT INTO `accessi` (`utente`) VALUES ('{utente}')".replace({ utente }, utente);
+        var query = "INSERT INTO `accessi` (`utente`) VALUES ('{utente}')".replace('{utente}', utente);
         db.executeQuery(query, function (err, results) {
             logger.warn('Accesso inserito');
         });
