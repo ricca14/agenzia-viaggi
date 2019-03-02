@@ -10,8 +10,11 @@ function setDefaultWhere(condition, limit = false) {
 class Admin {
     constructor() { }
 
-    insertAccesso(utente) {
-        var query = "INSERT INTO `accessi` (`utente`) VALUES ('{utente}')".replace('{utente}', utente);
+    insertAccesso(utente, pagina) {
+        var query = "INSERT INTO `accessi` (`utente`, `pagina`) VALUES ('{utente}', '{pagina}')".replace('{utente}', utente).replace('{pagina}', pagina);
+
+        logger.error(query);
+        logger.error(utente);
         db.executeQuery(query, function (err, results) {
             logger.warn('Accesso inserito');
         });

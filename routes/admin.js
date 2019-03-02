@@ -23,9 +23,9 @@ router.get('/', function (req, res, next) {
 // MAIN ROUTE
 router.get('/:section', function (req, res, next) {
   nome_utente = getCookie(req);
-  admin.insertAccesso(nome_utente);
   if (nome_utente) {
     section = req.url.replace('/', '');
+    admin.insertAccesso(nome_utente, section);
     switch (section) {
       case 'localita':
         renderLocalita(res);
