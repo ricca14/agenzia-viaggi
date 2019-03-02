@@ -12,9 +12,6 @@ class Admin {
 
     insertAccesso(utente, pagina) {
         var query = "INSERT INTO `accessi` (`utente`, `pagina`) VALUES ('{utente}', '{pagina}')".replace('{utente}', utente).replace('{pagina}', pagina);
-
-        logger.error(query);
-        logger.error(utente);
         db.executeQuery(query, function (err, results) {
             logger.warn('Accesso inserito');
         });
@@ -44,6 +41,19 @@ class Admin {
             }
         });
     }
+    getContinente(id, callback) {
+        var query = "SELECT * FROM continenti WHERE id = '"+id+"';";
+        db.executeQuery(query, function (err, results) {
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
+        });
+    }
+
     getAllNazioni(callback) {
         var query = 'select * from nazioni;';
         db.executeQuery(query, function (err, results) {
