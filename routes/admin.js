@@ -7,6 +7,7 @@ var logger = log4js.getLogger();
 logger.level = 'debug';
 
 const Admin = require('../model/admin.js');
+const admin = new Admin();
 const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
 var nome_utente = '';
@@ -14,16 +15,67 @@ var section = '';
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  var c = getCookie(req);
-  if (c) { renderIndex(res, c); }
+  nome_utente = getCookie(req);
+  if (nome_utente) { 
+    admin.insertAccesso(nome_utente, 'index');
+    renderIndex(res, nome_utente); }
   else { renderLogin(res); }
 });
+router.get('/:section/:id', function (req, res, next) {
+  nome_utente = getCookie(req);
+  if (nome_utente) {
+    admin.insertAccesso(nome_utente, section);
+    section = req.params.section;
+    var id = req.params.id;
+    switch (section) {
+      case 'localita':
+        renderModificaLocalita(res, id);
+        break;
+      case 'vacanze':
+        renderModificaVacanze(res, id);
+        break;
+      case 'alloggi':
+        renderModificaAlloggi(res, id);
+        break;
+      case 'categorie':
+        renderModificaCategorie(res, id);
+        break;
+      case 'continenti':
+        renderModificaContinenti(res, id);
+        break;
+      case 'nazioni':
+        renderModificaNazioni(res, id);
+        break;
+      case 'tag':
+        renderModificaTag(res, id);
+        break;
+      case 'immagini':
+        renderModificaImmagini(res, id);
+        break;
+      default:
+        renderIndex(res);
+    }
+  }
+  else { renderLogin(res); }
+});
+
+function renderModificaContinenti(res, id) {
+  admin.getContinente(id, function(err, continente) {
+    res.render(utiliy.getAdminViewByURL('modifica_'+section), {
+      section: section,
+      nome_utente: nome_utente,
+      continente: continente
+    });
+  });
+}
+
 
 // MAIN ROUTE
 router.get('/:section', function (req, res, next) {
   nome_utente = getCookie(req);
   if (nome_utente) {
-    section = req.url.replace('/', '');
+    section = req.params.section;
+    admin.insertAccesso(nome_utente, section);
     switch (section) {
       case 'localita':
         renderLocalita(res);
@@ -59,34 +111,29 @@ router.get('/:section', function (req, res, next) {
 // EVERYBODY ROUTE
 function renderLogin(res) {
   res.render(utiliy.getAdminViewByURL('login'), {
-    title: 'Admin',
     section: 'home'
   });
 }
 function renderIndex(res) {
   res.render(utiliy.getAdminViewByURL('index'), {
-    title: 'Admin',
     section: 'home',
     nome_utente: nome_utente
   });
 }
 function renderLocalita(res) {
   res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
     section: section,
     nome_utente: nome_utente
   });
 }
 function renderVacanze(res) {
   res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
     section: section,
     nome_utente: nome_utente
   });
 }
 function renderAlloggi(res) {
   res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
     section: section,
     nome_utente: nome_utente
   });
@@ -99,29 +146,31 @@ function renderCategorie(res) {
   });
 }
 function renderContinenti(res) {
-  res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
-    section: section,
-    nome_utente: nome_utente
+  admin.getAllContinenti(function (err, continenti) {
+    res.render(utiliy.getAdminViewByURL(section), {
+      section: section,
+      nome_utente: nome_utente,
+      continenti: continenti
+    });
   });
 }
 function renderNazioni(res) {
-  res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
-    section: section,
-    nome_utente: nome_utente
+  admin.getAllNazioni(function (err, nazioni) {
+    res.render(utiliy.getAdminViewByURL(section), {
+      section: section,
+      nome_utente: nome_utente,
+      nazioni: nazioni
+    });
   });
 }
 function renderTag(res) {
   res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
     section: section,
     nome_utente: nome_utente
   });
 }
 function renderImmagini(res) {
   res.render(utiliy.getAdminViewByURL(section), {
-    title: 'Admin',
     section: section,
     nome_utente: nome_utente
   });
@@ -151,12 +200,10 @@ function getCookie(req) {
   if (cookie !== undefined) { return cookie; }
   else { return undefined; }
 }
-
 function setCookie(res, result) {
   nome_utente = result[0].nome_display;
   // setto tempo expires a 15gg (3600000 sec = 1 ora)
   expires = 3600000 * 24 * 15; 
   res.cookie('adminLogin', nome_utente, { maxAge: expires, httpOnly: true });
 }
-
 module.exports = router;

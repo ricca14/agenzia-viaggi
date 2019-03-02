@@ -1,0 +1,51 @@
+extends main/layout
+
+block add-css
+    link(rel='stylesheet', href='/css/admin/admin.css')
+
+block add-js
+    script(type='text/javascript' src='/js/admin/admin.js')
+
+block nav
+    include main/navbar.jade
+
+block content
+    .main
+        .row
+            h1 PAGINA CONTINENTI
+        table.table.mt-2
+            thead
+                tr
+                    th(scope="col")
+                        p Nome
+                    th(scope="col")
+                        p Visibile sul sito
+                    th(scope="col")
+                        p Ordinamento
+                    th(scope="col")
+                        p Immagine WEBP 
+                    th(scope="col")
+                        p Immagine JPG 
+                    th(scope="col")
+            each continente in continenti
+                tbody
+                    - if (continente.id > 0) {
+                        tr
+                            th(scope="row")
+                                p #{continente.nome}
+                            td
+                                - if (continente.visibile === 1){
+                                    img.admin-icon(src='/img/admin/v.jpg')
+                                - }
+                                - else {
+                                    img.admin-icon(src='/img/admin/x.png')
+                                - }
+                            td
+                                p #{continente.ordine}
+                            td
+                                img.img-example(src='/img/continenti/#{continente.img}.webp')
+                            td
+                                img.img-example(src='/img/continenti/#{continente.img}.jpg')
+                            td
+                                a.btn.btn-primary(href='/admin/continenti/#{continente.id}') Modifica
+                    - }

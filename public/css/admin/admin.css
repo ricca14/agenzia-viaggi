@@ -20,6 +20,12 @@ footer {
   z-index: 1;
   background-color: rgba(107,107,107, 0.4);
 }
+img.img-example {
+  max-width: 110px;
+}
+img.admin-icon {
+  max-width: 40px;
+}
 
 .loader {
   position:fixed;
