@@ -46,7 +46,7 @@ class Admin {
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
                 // Model con dati corretti
-                callback(200, results);
+                callback(200, results[0]);
             }
             else {
                 callback(418, results);

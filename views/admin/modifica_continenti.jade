@@ -11,9 +11,37 @@ block nav
 
 block content
     .main
-        div.text-center.wip
-            h1 
-                | I'm Sorry... pagina 
-                span(style='color: #ff0000') #{section} 
-                | ancora in fase di sviluppo
-            img(src='/img/admin/wip.png')
+        form#modifica_continente
+            .row
+                .col-md-6.form-group
+                    label(for='nome') Nome
+                    input#nome.form-control.required(type='text', name='nome', placeholder="Nome", value='#{continente.nome}')
+                    div.invalid-feedback
+            .row    
+                .col-md-6.form-group
+                    label(for='icon') Icon
+                    input#icon.form-control.required(type='text', name='icon', placeholder="icon")
+                    div.invalid-feedback
+            .row
+                .col-md-6.form-group
+                    label(for='img') Immagine
+                    input#img.form-control.required(type='file', name='img')
+                    div.invalid-feedback
+                .col-md-2
+                    img.img-example(src='/img/continenti/#{continente.img}.webp')
+                .col-md-2
+                    img.img-example(src='/img/continenti/#{continente.img}.jpg')
+            .row    
+                .col-md-6.form-group
+                    label(for='ordine') Ordine
+                    input#ordine.form-control(type='number', name='ordine', value='#{continente.ordine}')
+                    div.invalid-feedback Campo telefono errato
+            .row    
+                .col-md-6.form-group
+                    label(for='visibile') Visibile
+                    input#visibile.form-control(type='checkbox', name='visibile', checked=(continente.visibile === 1 ? 'checked' : ''))
+                    div.invalid-feedback
+            .row
+                .col-md-12
+                    //- input#submit.btn.btn-primary.disabled(type='submit', value='Invia', class="g-recaptcha" data-sitekey="6LcsxY4UAAAAAM_bbmILI1QPTTzT3pROaRpOAd-t" data-callback='onSubmitForm')
+                    input#submit.btn.btn-primary(type='submit', value='Invia', data-callback='onSubmitForm')
