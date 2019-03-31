@@ -91,9 +91,6 @@ $('#richiesta-vacanza').on('submit', function (e) {
     }
 });
 
-
-
-
 function scrollToAnchor(anchor, timer=0) {
     $('html, body').animate({
         'scrollTop': $(anchor).offset().top

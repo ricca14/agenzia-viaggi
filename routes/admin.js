@@ -6,7 +6,7 @@ var log4js = require('log4js');
 var logger = log4js.getLogger();
 logger.level = 'debug'; 
 var multer = require('multer');
-var upload = multer({ dest: '/img/continenti' });
+var upload = multer({ dest: __dirname + '/img/continenti' });
 
 const Admin = require('../model/admin.js');
 const admin = new Admin();
