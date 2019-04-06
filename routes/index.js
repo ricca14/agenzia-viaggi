@@ -16,10 +16,10 @@ const browser = require('browser-detect');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   async.parallel({
-    articoli: function (callback) {
+    news: function (callback) {
       var articolo = new Articolo();
-      articolo.getLast(5, function (err, articoli) {
-        callback(null, articoli);
+      articolo.getLastNewsFeed(5, function (err, news) {
+        callback(null, news);
       });
     },
     vacanze: function (callback) {
@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
     res.render('site/index', {
       title: 'Home',
       route: 'Home',
-      articoli: results.articoli,
+      news_feed: results.news,
       vacanze: results.vacanze,
       imgExt: imgExt
     });

@@ -6,8 +6,8 @@ block add-css
   
 
 block add-js
-  script(type='text/javascript' src='/js/main/tether.min.js')
   script(type='text/javascript' src='/js/main/slick.min.js')
+  script(type='text/javascript' src='/js/main/tether.min.js')
   script(type='text/javascript' src='/js/home.js')
 
   
@@ -19,15 +19,15 @@ block nav
 
 block content
   section.hero-slider
-    each articolo, index in articoli 
+    each news, index in news_feed 
       - var i = index + 1
-      .hero-slide.slider_background(class='slider_#{i}', style='background-image: url(/img/articoli/#{articolo.image}#{imgExt});')
+      .hero-slide.slider_background(class='slider_#{i}', style='background-image: url(/img/#{news.tipo}/#{news.image}#{imgExt});')
         .slider-overlay(class='slider-#{i}-overlay')
         .slide-box
           .slide-content.text-white.text-white
-            h2.h1.text-white #{articolo.titolo}
-            p.hidden-xs #{articolo.descrizione}
-            a.text-white.btn.slide-btn(href='/articoli/#{articolo.url}') Continua...
+            h2.h1.text-white #{news.titolo}
+            p.hidden-xs #{news.descrizione}
+            a.text-white.btn.slide-btn(href='/#{news.tipo}/#{news.url}') Continua...
 
   .row
     .col
