@@ -4,6 +4,6 @@ $('.hero-slider').slick({
     nextArrow: $(".themes-carousel-controls .next"),
     autoplay: true,
     dots: true,
-    autoplaySpeed: 2500,
+    autoplaySpeed: 4000,
     fade: true
 });
