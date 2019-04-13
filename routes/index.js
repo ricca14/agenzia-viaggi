@@ -37,8 +37,6 @@ router.get('/', function (req, res, next) {
       });
     }
   }, function (err, results) {
-
-    logger.error(results.wip);
     if (results.wip) {
       res.render('site/work_in_progress', {
         title: 'Home',
@@ -83,6 +81,15 @@ router.get('/contattaci/info', function (req, res, next) {
   });
 });
 
+router.get('/business', function (req, res, next) {
+  var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
+  res.render('site/business', {
+    title: 'Business',
+    route: 'business',
+    imgExt: imgExt
+  });
+});
+
 // AJAX
 router.post('/contattaci', function (req, res, next) {
   var sms = new Contacts();
@@ -111,5 +118,6 @@ router.get('/continente/:continenteID', function (req, res, next) {
     }
   });
 });
+
 
 module.exports = router;

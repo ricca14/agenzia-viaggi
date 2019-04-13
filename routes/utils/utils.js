@@ -52,12 +52,8 @@ class Utils {
     }
 
     getImageExtensionByBrowser(dict) {
-        if (dict.name === 'safari') {
-            return '.jpg';
-        }
-        else {
-            return '.webp';
-        }
+        if (dict.name === 'safari') { return '.jpg'; }
+        else {return '.webp';}
     }
 }
 

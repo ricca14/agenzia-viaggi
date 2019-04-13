@@ -7,7 +7,8 @@ logger.level = 'debug';
 const Articolo = require('../model/articolo.js');
 const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
-const route = 'articoli';
+const route = 'articoli'; 
+const browser = require('browser-detect');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -33,10 +34,13 @@ router.get('/:articoloUrl', function (req, res, next) {
             res.redirect('/articoli');
         } 
         else {
+            var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
             res.render(utiliy.getViewByURL(route, articoloUrl), {
                 title: articolo.titolo,
                 route: route,
-                articolo: articolo
+                articolo: articolo,
+                imgExt: imgExt,
+                wip: false
             });
         }
     });
