@@ -241,6 +241,9 @@ footer p {
   background-position: 50% 50%;
 }
 
+.headerTextContainer h1 {
+  color: #01538D
+}
 
 /* TABLET E IPAD */
 @media screen and (min-width: 768px) {

@@ -7,9 +7,16 @@ block nav
   include ../main/navbar.jade
 
 block content
+
   if type == 'vacanze'
     case intro
       when 'last-minute': include intro_categoria/intro_last-minute.jade
       default: p
 
+  .mt-5
 
+  .container
+    .row-horizon
+      each vacanza, index in element 
+        .col-md-4.col-sm-6
+          include ../index/card.jade

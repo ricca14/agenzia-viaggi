@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async = require("async");
 
 var log4js = require('log4js');
 var logger = log4js.getLogger();
@@ -18,7 +19,8 @@ router.get('/', function (req, res, next) {
         res.render('site/categorie', {
             title: 'Categorie',
             route: route,
-            categorie: categorie
+            categorie: categorie,
+            wip: false
         });
     });
 });
@@ -30,38 +32,39 @@ router.get('/:categoriaUrl', function (req, res, next) {
         res.redirect('/categorie');
     }
     var categoria = new Categoria();
-
-
-    // GESTIONE SINGOLA CATEGORIA SE ARTICOLO
-
-
-    // Prendo tutte le vacanze per una determinata categoria
-    categoria.getCategoriaByURL(categoriaUrl, function (err, vacanze) {
-        if (err == 418) {
-            res.redirect('/categorie');
-        }
-        else {
-            switch (categoriaUrl) {
-                case 'last-minute':
-                    title = 'Vacanze - LAST MINUTE';
-                    break;
-                case 'mood':
-                    title = 'Vacanze - MOOD';
-                    break; 
-                default:
-                    title = '';
-                    break;
-            }
-            var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
-            res.render(utiliy.getViewByURL(route, categoriaUrl), {
-                title: vacanze.nome,
-                route: route,
-                elelement: vacanze,
-                type: 'vacanze',
-                intro: categoriaUrl,
-                imgExt: imgExt
+    async.parallel({
+        categoria: function (callback) {
+            categoria.getCategoriaDatail(categoriaUrl, function (err, cat) {
+                callback(null, cat);
             });
-        }
+        },
+        elements: function (callback) {
+
+            // TODO: GESTIONE SINGOLA CATEGORIA SE ARTICOLO
+
+            categoria.getVacanzeCategoriaByURL(categoriaUrl, function (err, vacanze) {
+                if (err == 418) {
+                    res.redirect('/categorie');
+                }
+                else {
+                    callback(null, vacanze);
+                }
+            });
+        },
+    }, function (err, results) {
+        var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
+        var categoria = results.categoria[0];
+        categoria.descrizione = categoria.descrizione.split("\n");
+        res.render(utiliy.getViewByURL(route, categoriaUrl), {
+            title: categoria.nome,
+            categoria: categoria,
+            route: route,
+            element: results.elements,
+            type: 'vacanze',
+            intro: categoriaUrl,
+            imgExt: imgExt,
+            wip: false
+        });
     });
 });
 
