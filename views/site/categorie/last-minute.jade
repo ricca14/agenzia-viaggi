@@ -7,12 +7,9 @@ block nav
   include ../main/navbar.jade
 
 block content
-  h1= title
-  p Welcome to #{title} -- LAST MINUTE
-
   if type == 'vacanze'
     case intro
       when 'last-minute': include intro_categoria/intro_last-minute.jade
-      default: p ok
+      default: p
 
 

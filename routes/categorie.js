@@ -8,6 +8,7 @@ const Categoria = require('../model/categoria.js');
 const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
 const route = 'categorie';
+const browser = require('browser-detect');
 
 
 /* GET users listing. */
@@ -51,12 +52,14 @@ router.get('/:categoriaUrl', function (req, res, next) {
                     title = '';
                     break;
             }
+            var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
             res.render(utiliy.getViewByURL(route, categoriaUrl), {
                 title: vacanze.nome,
                 route: route,
                 elelement: vacanze,
                 type: 'vacanze',
-                intro: categoriaUrl
+                intro: categoriaUrl,
+                imgExt: imgExt
             });
         }
     });

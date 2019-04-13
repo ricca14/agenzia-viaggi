@@ -7,7 +7,7 @@ block nav
   include ../main/navbar.jade
 
 block header
-  .headerImg(style='background-image: url("/img/articoli/#{articolo.image}");')
+  .headerImg(style='background-image: url("/img/articoli/#{articolo.image}#{imgExt}");')
 
 block content
   h1= title
