@@ -52,7 +52,7 @@ class Admin {
                 callback(418, results);
             }
         });
-    }
+}
 
     getAllNazioni(callback) {
         var query = 'select * from nazioni;';
@@ -66,7 +66,6 @@ class Admin {
             }
         });
     }
-
 }
 
 module.exports = Admin;

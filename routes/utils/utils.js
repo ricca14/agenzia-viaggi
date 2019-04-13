@@ -17,11 +17,22 @@ class Utils {
         else { return 'admin/default'; }
     }
     getParametro(tipo, chiave, callback) {
-        var query = "SELECT * FROM parametri WHERE tipo = {tipo} AND chiave = {chiave};".replace("{tipo}", tipo).replace("{chiave}", chiave);
+        var query = "SELECT * FROM parametri WHERE tipo = '{tipo}' AND chiave = '{chiave}';".replace("{tipo}", tipo).replace("{chiave}", chiave);
 
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
                 callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
+        });
+    }
+
+    getWIP(callback) {
+        db.executeQuery("SELECT valore FROM parametri WHERE tipo = 'site' AND chiave = 'work_in_progress' LIMIT 1;", function (err, results) {
+            if (typeof results !== 'undefined' && results.length > 0) {
+                callback(200, results[0].valore);
             }
             else {
                 callback(418, results);
