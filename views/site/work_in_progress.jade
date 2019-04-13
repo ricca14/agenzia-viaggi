@@ -1,0 +1,26 @@
+extends main/layout
+
+block add-css
+  link(rel='stylesheet', href='/css/slick.min.css')
+  link(rel='stylesheet', href='/css/main/bootstrap-horizon.css')
+  
+
+block add-js
+  script(type='text/javascript' src='/js/main/slick.min.js')
+  script(type='text/javascript' src='/js/main/tether.min.js')
+  script(type='text/javascript' src='/js/home.js')
+
+block nav
+  include main/navbar.jade
+
+block content
+    .main
+        div.text-center.wip
+            h1 
+                | Sito in contruzione
+            .row
+                .col
+                    img.logo(src='/img/main_logo.jpg')
+            .row
+                .col
+                    img(src='/img/admin/wip.png')

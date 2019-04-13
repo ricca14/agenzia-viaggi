@@ -3,7 +3,7 @@ $('.hero-slider').slick({
     prevArrow: $(".themes-carousel-controls .prev"),
     nextArrow: $(".themes-carousel-controls .next"),
     autoplay: true,
-    dots: false,
-    autoplaySpeed: 6000,
+    dots: true,
+    autoplaySpeed: 4000,
     fade: true
 });

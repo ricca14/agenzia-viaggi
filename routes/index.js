@@ -7,7 +7,7 @@ logger.level = 'debug'; // debug, info, warn, error
 
 const Articolo = require('../model/articolo.js'); 
 const Contacts = require('../model/contact.js'); 
-const Vacanza = require('../model/vacanza.js'); 
+const Vacanza = require('../model/vacanza.js');
 const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
 
@@ -16,10 +16,18 @@ const browser = require('browser-detect');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   async.parallel({
-    articoli: function (callback) {
+    news: function (callback) {
       var articolo = new Articolo();
-      articolo.getLast(5, function (err, articoli) {
-        callback(null, articoli);
+      articolo.getLastNewsFeed(5, function (err, news) {
+        callback(null, news);
+      });
+    },
+    wip: function (callback) {
+      var utils = new Utils();
+      utils.getWIP(function (err, response) {
+        wip = false;
+        if(response == 1) { wip = true; }
+        callback(null, wip);
       });
     },
     vacanze: function (callback) {
@@ -29,15 +37,28 @@ router.get('/', function (req, res, next) {
       });
     }
   }, function (err, results) {
-    var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
-    res.render('site/index', {
-      title: 'Home',
-      route: 'Home',
-      articoli: results.articoli,
-      vacanze: results.vacanze,
-      imgExt: imgExt
-    });
+
+    logger.error(results.wip);
+    if (results.wip) {
+      res.render('site/work_in_progress', {
+        title: 'Home',
+        route: 'Home',
+        wip: true
+      });
+    }
+    else {
+        var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
+        res.render('site/index', {
+          title: 'Home',
+          route: 'Home',
+          news_feed: results.news,
+          vacanze: results.vacanze,
+          imgExt: imgExt,
+          wip: false
+        });
+    }
   });
+
 });
 
 router.get('/chi_siamo', function (req, res, next) {

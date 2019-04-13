@@ -3,9 +3,14 @@ var log4js = require('log4js');
 var logger = log4js.getLogger();
 logger.level = 'debug'; 
 const defaultQuery = "SELECT a.`titolo`, a.`descrizione`, a.`image`, a.`url`, c.`nome` AS categoria, c.`url` AS categoria_url, c.`icon` AS categoria_icon, n.`nome` AS nazione_nome, n.`icon` AS nazione_icon, co.`nome` AS continente_nome, c.`icon` AS continente_icon FROM articoli a left JOIN categorie c ON c.id = a.categoria LEFT JOIN continenti co ON co.id = a.continente LEFT JOIN nazioni n ON n.id = a.nazione WHERE c.tipo = 'articolo' and c.visibile = 1 and a.visibile = 1 ORDER BY a.`ordine` DESC {limit}";
+const defaultNewsFeed = "SELECT * FROM news_feed f WHERE visibile = 1 ORDER BY f.`ordine` ASC {limit}";
+
 
 function setDefaultWhere(condition, limit=false) {
     return defaultQuery.replace("{where}", condition).replace("{limit}", limit ? ' LIMIT ' + limit : '');
+} 
+function setDefaultNewsWhere(condition, limit = false) {
+    return defaultNewsFeed.replace("{where}", condition).replace("{limit}", limit ? ' LIMIT ' + limit : '');
 } 
 class Articolo {
     constructor() {}
@@ -22,6 +27,19 @@ class Articolo {
             }
         });
     }
+    getLastNewsFeed(n_news, callback) {
+        var query = setDefaultNewsWhere('', n_news);
+        db.executeQuery(query, function (err, results) {
+            if (typeof results !== 'undefined' && results.length > 0) {
+                // Model con dati corretti
+                callback(200, results);
+            }
+            else {
+                callback(418, results);
+            }
+        });
+    }
+
     getLast(n_articoli, callback) {
         var query = setDefaultWhere('', n_articoli);
         db.executeQuery(query, function (err, results) {

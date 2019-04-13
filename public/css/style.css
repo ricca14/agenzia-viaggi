@@ -66,6 +66,17 @@ footer p {
     text-decoration: none;
 }
 
+.wip {
+  margin-top: 100px;
+}
+.wip img {
+  max-width: 350px;    
+  margin-top: 20px;
+}
+.wip img.logo {
+  max-width: 700px;    
+  margin-top: 20px;
+}
 
 /* Section Header */
 .separator-type, .title-type, .intro-type, .content-type .intro-type p {

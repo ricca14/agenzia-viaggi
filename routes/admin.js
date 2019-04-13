@@ -4,7 +4,9 @@ const crypto = require('crypto');
 
 var log4js = require('log4js');
 var logger = log4js.getLogger();
-logger.level = 'debug';
+logger.level = 'debug'; 
+var multer = require('multer');
+var upload = multer({ dest: __dirname + '/img/continenti' });
 
 const Admin = require('../model/admin.js');
 const admin = new Admin();
@@ -184,6 +186,13 @@ function renderImmagini(res) {
 
 
 // POST
+router.post('/continente', function (req, res, next) {
+  logger.error('\n WOW');
+  logger.error(req.file);
+  logger.error(req.body);
+});
+
+
 router.post('/login', function (req, res, next) {
   var admin = new Admin();
   var params = { 'username': req.body.username, 'password': crypto.createHash('sha1').update(req.body.password).digest('hex') };
