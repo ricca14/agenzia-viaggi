@@ -19,7 +19,8 @@ router.get('/', function (req, res, next) {
         res.render('site/categorie', {
             title: 'Categorie',
             route: route,
-            categorie: categorie
+            categorie: categorie,
+            wip: false
         });
     });
 });
@@ -52,12 +53,8 @@ router.get('/:categoriaUrl', function (req, res, next) {
         },
     }, function (err, results) {
         var imgExt = utiliy.getImageExtensionByBrowser(browser(req.headers['user-agent']));
-            var categoria = results.categoria[0];
-
-            categoria.descrizione = categoria.descrizione.split("\n");
-
-            logger.error(categoria.descrizione);
-
+        var categoria = results.categoria[0];
+        categoria.descrizione = categoria.descrizione.split("\n");
         res.render(utiliy.getViewByURL(route, categoriaUrl), {
             title: categoria.nome,
             categoria: categoria,
@@ -65,7 +62,8 @@ router.get('/:categoriaUrl', function (req, res, next) {
             element: results.elements,
             type: 'vacanze',
             intro: categoriaUrl,
-            imgExt: imgExt
+            imgExt: imgExt,
+            wip: false
         });
     });
 });
