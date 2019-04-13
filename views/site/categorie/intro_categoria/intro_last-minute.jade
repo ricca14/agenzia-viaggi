@@ -1,2 +1,9 @@
 #wrapperHeaderImg
     .headerImg(style='background-image: url("/img/categorie/last_minute#{imgExt}");')
+
+.mt-4
+
+.container.headerTextContainer
+    h1 #{categoria.titolo}
+    each text in categoria.descrizione
+        p #{text}

@@ -56,7 +56,6 @@ router.get('/', function (req, res, next) {
         });
     }
   });
-
 });
 
 router.get('/chi_siamo', function (req, res, next) {
@@ -118,6 +117,5 @@ router.get('/continente/:continenteID', function (req, res, next) {
     }
   });
 });
-
 
 module.exports = router;
