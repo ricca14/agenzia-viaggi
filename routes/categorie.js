@@ -9,6 +9,7 @@ const Utils = require('./utils/utils.js');
 const utiliy = new Utils();
 const route = 'categorie';
 
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     var categoria = new Categoria();
@@ -28,15 +29,34 @@ router.get('/:categoriaUrl', function (req, res, next) {
         res.redirect('/categorie');
     }
     var categoria = new Categoria();
-    categoria.getCategoriaByURL(categoriaUrl, function (err, articolo) {
+
+
+    // GESTIONE SINGOLA CATEGORIA SE ARTICOLO
+
+
+    // Prendo tutte le vacanze per una determinata categoria
+    categoria.getCategoriaByURL(categoriaUrl, function (err, vacanze) {
         if (err == 418) {
             res.redirect('/categorie');
         }
         else {
+            switch (categoriaUrl) {
+                case 'last-minute':
+                    title = 'Vacanze - LAST MINUTE';
+                    break;
+                case 'mood':
+                    title = 'Vacanze - MOOD';
+                    break; 
+                default:
+                    title = '';
+                    break;
+            }
             res.render(utiliy.getViewByURL(route, categoriaUrl), {
-                title: articolo.nome,
+                title: vacanze.nome,
                 route: route,
-                articolo: articolo
+                elelement: vacanze,
+                type: 'vacanze',
+                intro: categoriaUrl
             });
         }
     });

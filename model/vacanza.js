@@ -36,11 +36,10 @@ class Vacanza {
         });
     }
 
-    getVacanzaByID(id, callback) {
-        var query = setDefaultWhere("AND a.id = '" + id + "'", 1);
+    getVacanzaByURL(vacanzaURL, callback) {
+        var query = setDefaultWhere("AND v.url = '" + vacanzaURL + "'", 1);
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
-                // Model con dati corretti                
                 var vacanza = results[0];
                 callback(200, vacanza);
             }
@@ -50,8 +49,8 @@ class Vacanza {
         });
     }
 
-    getVacanzaByURL(vacanzaURL, callback) {
-        var query = setDefaultWhere("AND v.url = '" + vacanzaURL + "'", 1);
+    getLastMinute(callback) {
+        var query = setDefaultWhere("AND c.nome = 'Last Minute'");
         db.executeQuery(query, function (err, results) {
             if (typeof results !== 'undefined' && results.length > 0) {
                 var vacanza = results[0];

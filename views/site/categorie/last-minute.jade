@@ -1,0 +1,18 @@
+extends layout_categorie
+
+block footer
+  include ../main/footer.jade
+
+block nav
+  include ../main/navbar.jade
+
+block content
+  h1= title
+  p Welcome to #{title} -- LAST MINUTE
+
+  if type == 'vacanze'
+    case intro
+      when 'last-minute': include intro_categoria/intro_last-minute.jade
+      default: p ok
+
+
