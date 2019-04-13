@@ -1,0 +1,81 @@
+extends main/layout
+    
+block add-css
+  link(rel='stylesheet', href='/css/about-us.min.css')
+
+block nav
+  include main/navbar.jade
+
+block footer
+  include main/footer.jade
+
+block content
+  #ct-js-wrapper.ct-pageWrapper
+    section#parallax-one.company-heading.intro-type
+      .section-header
+        .row.product-title-info
+          .col-md-12
+            h1 Toto for Business
+      #parallax-cta.parallax(style='background-image:url(/img/business#{imgExt});')
+    section#section.story-section.company-sections.ct-u-paddingBoth100.paddingBothHalf.noTopMobilePadding
+      .section-header.text-center
+        h2 WHAT DRIVES US
+        h3 Lorem ipsum - dolor
+        .row.justify-content-center
+          .col-md-8
+            .red-border
+            p.ct-u-size22.ct-u-fontWeight300.marginTop40
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed libero vel ex maximus vulputate nec eu ligula. Vestibulum elementum nisi ut fermentum lobortis. Sed quis iaculis felis.
+            // <a class="ct-u-marginTop60 btn btn-solodev-red btn-fullWidth-sm ct-u-size19" href="#">Learn More</a>
+    section.culture-section.company-sections.ct-u-paddingBoth100.paddingBothHalf.noTopMobilePadding
+      .section-header
+        .row.justify-content-center
+          .col-md-8
+            h2 Etiam varius porttitor
+            h3 Vestibulum elementum nisi ut
+            p.ct-u-size22.ct-u-fontWeight300.ct-u-marginBottom60
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              br
+              |           Praesent sed libero vel ex maximus vulputate nec eu ligula. Vestibulum elementum nisi ut fermentum lobortis.
+        .row.ct-u-paddingBoth20
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-medkit(aria-hidden='true')
+              p LOREM IPSUM
+              p.company-icons-subtext.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-money(aria-hidden='true')
+              p DOLOR SIT AMET
+              p.company-icons-subtext.hidden-xs Praesent sed libero vel ex maximus vulputate nec eu ligula.
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-clock-o(aria-hidden='true')
+              p SED TRISTIQUE
+              p.company-icons-subtext.hidden-xs Vestibulum elementum nisi ut fermentum lobortis.
+        .row.ct-u-paddingBoth20
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-coffee(aria-hidden='true')
+              p SEMPER IPSUM
+              p.company-icons-subtext.hidden-xs Nullam bibendum felis non laoreet rutrum.
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-gamepad(aria-hidden='true')
+              p NEC MATTIS
+              p.company-icons-subtext.hidden-xs Etiam diam mi, lacinia eu sapien in, dapibus sodales erat.
+          .col-xs-6.col-md-4
+            .company-icons-white
+              i.fa.fa-cutlery(aria-hidden='true')
+              p CRAS MOLLIS
+              p.company-icons-subtext.hidden-xs Etiam varius porttitor tellus et aliquet.
+        a.ct-u-marginTop60.btn.btn-solodev-red-reversed.btn-fullWidth-sm.ct-u-size19(href='/contattaci') Pronto a partire?
+    section.customers-section.company-sections.ct-u-paddingBoth100.paddingBothHalf.noTopMobilePadding
+      .section-header
+        .row.justify-content-center
+          .col-md-8
+            h2 CUSTOMERS
+            h3 Trusted by some of the world’s leading brands.
+            p.ct-u-size22.ct-u-fontWeight300.ct-u-marginBottom60.marginTop40
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed libero vel ex maximus vulputate nec eu ligula. Vestibulum elementum nisi ut fermentum lobortis. Sed quis iaculis felis.
+          .clearfix
