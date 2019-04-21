@@ -2,7 +2,8 @@ body {
   /* padding: 15px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   max-height: 100%;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-color: #FFF;
 }
 h3, a, p {
   color: #1f2124;
@@ -24,7 +25,13 @@ footer {
 footer p {
   color: #f2f2f2
 }
-
+.bg-light-grey {
+  background-color: #f2f2f2
+}
+.padding-content {
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
 .row {
   margin-right: 0px !important;
   margin-left: 0px !important;
@@ -168,10 +175,6 @@ footer p {
 .categorie-box {
     height: 340px;
 }
-.pink { background: #ed145b; }
-.green { background: #00a651; }
-.darkblue { background: #0054a6; }
-.gold { background: #d4ab07; }
 .cat-color { background: #1c528d; }
 
 .categorie-border {
@@ -244,6 +247,26 @@ footer p {
 .headerTextContainer h1 {
   color: #01538D
 }
+
+.viaggi-gruppo {
+  background-image: url('/img/gruppo_vacanze.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* .rotation {
+  background-color: white;
+  border-radius: 30%;
+  display: block;
+  min-height: 600px;
+  width: 50%;
+  -ms-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
+  position: absolute;
+  right: 0;
+} */
+
 
 /* TABLET E IPAD */
 @media screen and (min-width: 768px) {
