@@ -69,19 +69,47 @@ block content
                 p
                   i.fas.fa-gift.fa-2x
                 p.text-white Crea la tua vacanza
-  .row
-    .col
-      h1.title-header.text-center Le nostre offerte 
-      h5.text-center Vuoi partire ma non sai dove andare? 🤔 Ecco alcuni pacchetti fatti apposta per te 
+  
+  div.padding-content.mt-3.bg-light-grey
+    .row
+      .col
+        h1.title-header.text-center Le nostre offerte 
+        h5.text-center Vuoi partire ma non sai dove andare? 🤔 Ecco alcuni pacchetti fatti apposta per te 
 
-  .container.mt-3
-    .row-horizon
-      each vacanza, index in vacanze 
-        .col-md-4.col-sm-6
-          include ./index/card.jade
+    .container.mt-3
+      .row-horizon
+        each vacanza, index in vacanze 
+          .col-md-4.col-sm-6
+            include ./index/card.jade
 
-  .row.mt-3
-    .banner
-      
+  .viaggi-gruppo
+    .row.padding-content
+      .col
+        h1.title-header.text-center Viaggi di gruppo 
+        h5.text-center Organizziamo ogni anno nuovi e incredibili viaggi di gruppo in giro per il mondo 🌎
+    .row.padding-content
+      .col.text-center
+        h4 Scarica la Brochure del prossimo viaggio
+        
+        a.btn.btn-primary.mt-2(href='pdf/viaggi-gruppo/iviaggiditoto_USA_2020.pdf', download='')
+          i.fa.fa-download
+          | Brochure USA 2020
+
+      .col.text-center
+        h4 Guarda i viaggi che abbiamo fatto, leggi recensioni e prenota subito il tuo posto
+        
+        a.btn.btn-primary.mt-2(href='#') Scopri di più
+
+  //- .row.mt-3
+  //-   .banner
+
+  div.padding-content.bg-light-grey
+    a(href='/business')
+      .row.pt-3
+        .col
+          h1.title-header.text-center Per le aziende 
+          h5.text-center Prenotazioni chiare e puntali nelle migliori località 
+
+
   .row.mt-3
     //- BOX VACANZE PER MOOD
